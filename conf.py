@@ -40,7 +40,7 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.todo',
-#    'sphinx.ext.mathml',
+    'sphinx.ext.mathml',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
