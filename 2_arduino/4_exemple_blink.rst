@@ -1,12 +1,14 @@
 Premier programme : Blink
 =========================
 
-Le programme **Blink** propose de faire clignoter la LED intégrée à la carte de développement (connectée sur la broche 13).
+Le programme **Blink** propose de faire clignoter la LED intégrée à la carte de développement. Cette LED est connectée en interne à la broche 13.
 
 Edition
 -------
 
 Le programme **Blink** est disponible dans les exemples du logiciel **Arduino IDE**.
+
+Dans le menu ``Fichier > Exemples > Basics > Blink``.
 
 .. figure:: images/Blink_01_exemples_blink.png
    :width: 780
@@ -28,9 +30,9 @@ Le programme **Blink** est disponible dans les exemples du logiciel **Arduino ID
 
 .. note::
 
-   * Un programme Arduino écrit en langage C/C++ est composé d'une suite d'intructions.
+   * Un programme Arduino écrit en **langage C/C++** est composé **d'une suite d'intructions**.
 
-   * Ces instruction sont effectuées dans l'ordre des lignes de code.
+   * Ces instructions sont exécutées dans **l'ordre des lignes de code**.
 
    * Les **commentaires** en gris sont délimités par les caractères ``/*`` et ``*/`` sur plusieurs lignes ou commencent pas les caractères ``//`` sur une même ligne.
 
@@ -57,8 +59,11 @@ Le programme **Blink** est disponible dans les exemples du logiciel **Arduino ID
 Compilation
 -----------
 
+.. warning::
 
+   Avant de lancer la compilation, il est important de **choisir le modéle de carte Arduino utilisé**. Le programme généré est dépendant du type de microcontrôleur présent sur la carte.
    
+
 .. figure:: images/Blink_03_compilation_choix_carte.png
    :width: 815
    :height: 600
@@ -67,12 +72,6 @@ Compilation
    :align: center
    
    Choix du type de carte
-
-.. warning::
-
-   Avant de lancer la compilation, il est important de **choisir le modéle de carte Arduino utilisé**. Le programme généré est dépendant du type de microcontrôleur présent sur la carte.
-   
-
 
 .. figure:: images/Blink_03_compilation_ksnip.png
    :width: 500
@@ -86,7 +85,9 @@ Compilation
 Téléversement
 -------------
 
+.. warning::
 
+   Pour téléverser le programme obtenu, il est nécessaire de **sélectionner le port de communication série** sur lequel est connectée la carte Arduino.
    
 .. figure:: images/Blink_04_televersement_choix_port.png
    :width: 855
@@ -96,11 +97,6 @@ Téléversement
    :align: center
    
    Choix du port de communication
-.. warning::
-
-   Pour téléverser le programme obtenu, il est nécessaire de **sélectionner le port de communication série** sur lequel est connectée la carte Arduino.
-   
-
 
 .. figure:: images/Blink_04_televersement_ksnip.png
    :width: 500

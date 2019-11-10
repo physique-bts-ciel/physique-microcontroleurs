@@ -4,18 +4,19 @@ Pilotage d'une carte Arduino en Python avec Nanpy
 Qu'est-ce que Nanpy ?
 ---------------------
 
-Nanpy est une librairie pour Python utilisée pour le **pilotage** d'une carte Arduino par le câble USB (port série).
+`Nanpy <https://nanpy.github.io/>`_ est une librairie pour Python utilisée pour le **pilotage** via le port USB d'une carte Arduino **par un ordinateur programmé en Python**.
 
-https://nanpy.github.io/
+.. warning::
+
+   Il est important de retenir que **Nanpy ne permet pas un fonctionnement autonome** de la carte Arduino puisque le carte doit-être **constamment connectée à l'ordinateur** sur lequel le programme Python est exécuté !
+
 
 Principe de fonctionnement
 --------------------------
 
 La carte Arduino a été préalablement programmer avec le firmware **Nanpy** téléversé à partir du logiciel Arduino. Ce firmware est un **programme particulier** (écrit en langage Arduino C/C++) qui **gère le  protocole de communication** entre le programme Python exécuté sur l'ordinateur et la carte Arduino.
 
-.. warning::
 
-   Il est important de retenir que **Nanpy ne permet pas un fonctionnement autonome** de la carte Arduino puisque le carte doit-être **constamment connectée à l'ordinateur** sur lequel le programme Python est exécuté !
 
 Installation de firmware Nanpy sur une carte Arduino
 ----------------------------------------------------

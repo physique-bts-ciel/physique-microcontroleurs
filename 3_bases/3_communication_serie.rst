@@ -6,7 +6,7 @@ Principe
 
 De base, les cartes Arduino ne possède pas d'écran pour afficher des messages. L'interface série (UART) reste le moyen le plus simple pour communiquer avec une carte Arduino.
 
-Le logiciel Arduino IDE dispose d'un **moniteur série** (``Outils > Moniteur série``) pour **lire des données** au format texte (ASCII) envoyées par le microcontrôleur.
+Le logiciel Arduino IDE met à disposition un **moniteur série** (dans le menu ``Outils > Moniteur série``) pour **lire des données** au format texte (ASCII) envoyées par le microcontrôleur.
 
 
 
@@ -60,9 +60,9 @@ Programme
    :align: center
 
 
-* L'instruction ``Serial.begin(9600)`` paramètre le port série à 9600 baud.
+* L'instruction ``Serial.begin(9600)`` paramètre le port série à 9600 baud (bits par seconde).
 
-* ``Serial.print("N = ")`` affiche la chaine de caractère ``N =`` dans le moniteur série.
+* ``Serial.print("N = ")`` affiche la chaine de caractères ``N =`` dans le moniteur série.
 
 * ``Serial.println(n)`` affiche le contenu de la variable ``n`` suivie d'un saut de ligne.
 

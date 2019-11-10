@@ -48,19 +48,19 @@ Une valeur de 220 |ohm| est un bon compromis.
 Programme
 ---------
 
-.. code:: arduino
+.. code-block:: arduino
 
-   int LED = 11;             // LED connectée sur broche 11
+   int pinLED = 11;             // LED connectée sur broche 11
 
    void setup() {
-     pinMode(LED, OUTPUT);   // Broche LED paramétrée en sortie
+     pinMode(pinLED, OUTPUT);   // Broche LED paramétrée en sortie
    }
 
    void loop() {
-     digitalWrite(LED,0);    // LED éteinte
-     delay(1000);            // Attendre 1 s
-     digitalWrite(LED,1);    // LED allumée
-     delay(1000);            // Attendre 1 s
+     digitalWrite(pinLED,0);    // LED éteinte
+     delay(1000);               // Attendre 1000 ms = 1s
+     digitalWrite(pinLED,1);    // LED allumée
+     delay(1000);               // Attendre 1000 ms = 1s
    }
 
 Dans la fonction ``setup()`` :

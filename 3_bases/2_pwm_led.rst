@@ -78,7 +78,7 @@ Instruction                Description
 ``pinMode(pin,OUTPUT)``    Configure le broche ``pin`` en sortie
 ``analogWrite(pin,duty)``  Génère une tension PWM sur le broche ``pin``
 
-                           avec le rapport cyclique ``duty`` (0 à 255)
+                           avec le rapport cyclique ``duty`` (entre 0 à 255)
 ========================== =======================================
 
 Applications
@@ -86,4 +86,4 @@ Applications
 
 * Variation de l'intensité lumineuse d'une LED.
 * Variation de la vitesse d'un moteur à courant continu.
-* Obtention d'une tension constante par filtrage passe bas (limitée en fréquence).
+* Obtention d'une tension constante par filtrage passe-bas (limitée en fréquence).

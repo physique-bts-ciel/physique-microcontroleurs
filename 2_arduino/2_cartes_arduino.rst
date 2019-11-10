@@ -4,8 +4,6 @@ Les cartes Arduino pour les sciences physiques
 La carte Arduino UNO (Rev 3)
 ----------------------------
 
-
-
 .. image:: images/Arduino_Uno_rev3_wikipedia.jpg
    :width: 400
    :height: 255
@@ -82,7 +80,7 @@ Caractéristiques principales :
    
    Mesure d'une température (image : Eurosmart)
 
-Une malette avec un afficheur LCD et plusieurs capteurs adaptée au programme du lycée est également proposée.
+Une malette avec un afficheur LCD et plusieurs capteurs adaptés au programme du lycée est également proposée.
 
 .. figure:: images/educaduino_malette.png
    :width: 800
