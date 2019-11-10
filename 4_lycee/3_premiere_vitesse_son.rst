@@ -7,11 +7,8 @@ Mesurer la célérité d'un son (première générale)
 
 
 
-Principe
---------
-
-Module HC-SR04
-~~~~~~~~~~~~~~
+Présentation du module HC-SR04
+------------------------------
 
 Les modules du type  HC-SR04 sont des émetteurs-récepteurs ultrasonores fonctionnant par réflexion. Ils sont utilisés généralement dans des applications  comme télémètre.
 
@@ -30,23 +27,20 @@ Fonctionnement
 * Le déclenchement d'une mesure (émission d'une salve) se fait par une brève impulsion (> 10 µs) sur l'entrée ``trig``.
 * La durée que prend l'onde pour aller de l'émetteur au récepteur est celle de l'impulsion renvoyée sur la sortie ``echo``. 
 
-Chronogrammes
-~~~~~~~~~~~~~
+Modification du module
+~~~~~~~~~~~~~~~~~~~~~~
 
-.. figure:: Images/Ultrason_HC-SR04_Chrono.png
-   :width: 960
-   :height: 720
-   :scale: 70 %
-   :alt: Chronogrammes HC-SR04
-   :align: center
-   
-   Mesures réalisées à l'oscilloscope sur un module HC-SR04 (5 V)
+Tel qu'il est vendu, ce module n'a peu d'intérêt en sciences physiques car les signaux électriques sur l'émetteur et le récepteur ne sont pas accessibles.
+Il est possible de résoudre ce problème en y soudant deux connecteurs supplémentaires (voir photo ci-dessous) et de visualiser ces deux signaux à l'oscilloscope ou avec une interface d'acquisition.
 
+Mesure de la célérité du son
+----------------------------
 
-Dans cet exemple, le calcul de la célérité du son donne 352 m/s.
+Principe
+~~~~~~~~
 
 Montage
--------
+~~~~~~~
 
 
 .. image:: Images/Ultrason_HC-SR04-Montage.png
@@ -56,8 +50,28 @@ Montage
    :alt: Montage ultrason - Arduino
    :align: center
 
+.. figure:: Images/Ultrason_HC-SR04-Module_arduino_sysam.png
+   :width: 900
+   :height: 600
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   Acquisition avec interface Sysam SP5
+
+.. figure:: Images/Ultrason_HC-SR04-modifie.png
+   :width: 900
+   :height: 900
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   Branchement du module HC-SR04 modifié
+
+
+
 Programme
----------
+~~~~~~~~~
 
 .. code:: arduino
 
@@ -84,7 +98,7 @@ Programme
      digitalWrite(pinTrig,HIGH);            // Début impulsion de declenchement
      delayMicroseconds(10);                 // Attendre 10 microseconde
      digitalWrite(pinTrig,LOW);             // Fin impulsion (Etat bas)
-     dureeEcho = pulseIn(pinEcho,HIGH);     // Mesure de la durée de l impulsion sur Echo
+     dureeEcho = pulseIn(pinEcho,HIGH);     // Mesure de la durée de l'impulsion sur Echo
      vitesse = 2*distance/dureeEcho * 1E6;  // Calcul de la vitesse
      Serial.print("Durée (s) = ");          // Affichage sur port série
      Serial.println(dureeEcho);
@@ -93,74 +107,50 @@ Programme
      delay(1000);                           // Attendre 1s
    }
 
+
+
+Résultats
+~~~~~~~~~
+
+.. figure:: Images/Ultrasons_Latis.png
+   :width: 934
+   :height: 900
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   Mesures obtenues dans Latis avec Sysam SP5
+
+
+.. figure:: Images/Ultrasons_scope_60cm.png
+   :width: 900
+   :height: 600
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   Mesures à l'oscilloscope pour une distance de 30 cm
+
+.. note::
+
+   La fonction ``+Width`` de l'oscilloscope mesure en temps réel la durée de l'impulsion sur la broche Echo.
+
+
+
+Application : réalisation d'un télémètre
+----------------------------------------
+
+Principe
+~~~~~~~~
+
+Programme
+~~~~~~~~~
+
 A retenir
 ---------
 
-Les modules du type HC-SR04 délivre une **impulsion à l'état haut** dont la durée est égale au temps que prend le son pour partir de l'émetteur puis revenir au récepteur.
+* Le module HC-SR04 fournit un **signal Echo pour la mesure automatique de la durée** de propagation du son.
 
-Dans le programme la fonction ``pulseIn(pin,HIGH)`` est chargée de la **mesure de cette durée**.
-
-Aller plus loin
----------------
-
-Pour améliorer la précision, il est possible de réaliser plusieurs mesures et d'en faire une moyenne ou même de tracer un histogramme de ces mesures !
-
-.. code:: arduino
-
-   /*
-    * Exporter plusieurs mesures de la vitesse du son
-    * au format CSV pour exploitation par tableur ou
-    * logiciels spécialisés (Regressi, Latis, ...)
-    */
-
-   #define pinTrig 8       // Trig sur broche 8
-   #define pinEcho 9       // Echo sur broche 9
-
-   float distance = 0.297; // Distance en module et réflecteur
-   long dureeEcho;         // Durée mesurée
-   int vitesse ;           // Vitesse obtenue
-   int n=1;
-
-   void setup() {
-     pinMode(pinTrig,OUTPUT);     // Broche Trig en sortie
-     digitalWrite(pinEcho,LOW);   // Sortie Trig à l état bas
-     pinMode(pinEcho,INPUT);      // Broche Echo en entrée
-     Serial.begin(9600);          // Paramétrage du port série
-     Serial.println("n;v");       // Entête du fichier CSV
-   }
-
-   void loop() {
-     if (n<=20) {
-     digitalWrite(pinTrig,HIGH);                 // Début impulsion de déclenchement
-     delayMicroseconds(10);                      // Attendre 10 microseconde
-     digitalWrite(pinTrig,LOW);                  // Fin impulsion (Etat bas)
-     dureeEcho = pulseIn(pinEcho,HIGH);          // Mesure de la durée de l impulsion sur Echo
-     vitesse = round(2*distance/dureeEcho*1E6);  // Calcul de la vitesse
-     Serial.print(n);                            // Début d écriture d une ligne de mesure
-     Serial.print(";");
-     Serial.println(vitesse);
-     delay(100);                                 // Attendre 1s
-     n++;
-     }
-   }
-
-.. figure:: Images/ultrason_histogramme_moniteur_serie.png
-   :width: 911
-   :height: 423
-   :scale: 70 %
-   :alt:
-   :align: center
-   
-   Mesures au format CSV obtenues dans le moniteur série
-
-
-.. figure:: Images/ultrason_histogramme.png
-   :width: 640
-   :height: 480
-   :scale: 70 %
-   :alt:
-   :align: center
-   
-   Histogramme des mesures tracé à l'aide du module ``matplolib`` de Python
+* La fonction ``pulseIn(pin,HIGH)`` **mesure cette durée**.
 
 

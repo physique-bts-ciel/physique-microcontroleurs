@@ -8,8 +8,8 @@
 Principe
 --------
 
-Les microtrôleurs Arduino ne possèdant pas de sortie analogique (CNA) pour générer des tensions sinusoïdales,
-une méthode simple pour produire un son est de générer une tension carrée (entre 0 V et 5 V) de fréquende f à l'entrée d'un haut-parleur.
+Les microcontrôleurs Arduino ne possédant pas de sortie analogique (CNA) pour générer des tensions sinusoïdales,
+une méthode simple pour produire un son est de générer une tension carrée (entre 0 V et 5 V) de fréquence f à l'entrée d'un haut-parleur.
 
 Le son obtenu par cette technique n'est pas pur car il comporte des harmoniques aux fréquences 3f, 5f, 7f, ...
 
@@ -85,5 +85,11 @@ Méthode 2 : avec la fonction ``tone()``
    void loop() {
    }
 
+Applications
+------------
+
+* Hauteur d'un son (relation entre fréquences et notes).
+
+* Générer une mélodie à partir de plusieurs notes (voir programme dans le menu ``Fichier > Exemples > Digital > toneMelody`` du logiciel Arduino).
 
 

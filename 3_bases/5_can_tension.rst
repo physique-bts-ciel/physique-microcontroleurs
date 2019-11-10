@@ -87,3 +87,46 @@ Applications
 
 * Interface avec un circuit comportant un capteur.
 * Mesure d'une position (potentiomètre).
+
+Aller plus loin : contrôler l'intensité lumineuse d'une LED
+--------------------------------------------------------
+
+En combinant le programme précédant avec celui sur la génération d'une tension PWM, il est possible de régler à l'aide d'un potentiomètre l'intensité lumineuse d'une LED.
+
+Montage
+~~~~~~~
+
+.. image:: images/Arduino_LED_PWM_Potentiometre.png
+   :width: 688
+   :height: 440
+   :scale: 70 %
+   :alt:
+   :align: center
+
+Programme
+~~~~~~~~~
+.. code-block:: arduino
+
+   /*
+    * Controler une LED avec un potentiomètre
+    */
+
+   #define pinLED 9
+
+   int N;       // Valeur lue sur A0 de 0 à 1023
+   int duty;    // Rapport cyclique de 0 à 255
+
+
+   void setup() {
+   }
+
+   void loop() {
+     N = analogRead(A0);       // Conversion analogique-numérique sur A0
+     duty = N/4;               // Calcul du rapport cyclique
+     analogWrite(pinLED,duty); // Génération de la tension PWM
+     delay(30);                // Attendre 30 ms
+   }
+
+.. note::
+
+   Pour convertir proportionnellement un entier sur 10 bits en un entier sur 8 bits, il suffit de diviser par 4 (division entière) !

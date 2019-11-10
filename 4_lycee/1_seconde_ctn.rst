@@ -32,10 +32,7 @@ Par exemple, une CTN est un **capteur résistif  à coefficient de température 
 
    Pour 25°C la résistance mesurée est égale à 10 |kohm| !
 
-
-Pour une tension qui varie en fonction de la résistance donc de la température, la solution la plus simple est de placer la CTN dans un pont diviseur de tension.
-
-
+Pour obtenir une tension qui varie en fonction de la résistance, donc de la température, la solution la plus simple est de **placer la CTN dans un pont diviseur de tension**.
 
 .. image:: Images/CTN_Div_tension.png
    :width: 460
@@ -44,23 +41,29 @@ Pour une tension qui varie en fonction de la résistance donc de la température
    :alt: 
    :align: center
 
-En choisant la résistance :math:`R_0` également à 10 |kohm|, la tension obtenue est partiellement linéarisée.
+L'expression de la tension :math:`u` est donnée par la relation suivante :
 
-.. image:: Images/CTN_Caracteristique_Diviseur_tension.png
+.. math::
+
+   {u = \dfrac{R}{R_0+R} \times V_{cc}}
+
+En choisissant la résistance :math:`R_0=10\,k\Omega` (valeur de la résistance caractéristique de la CTN), l'évolution de la tension obtenue en fonction de la température est **partiellement linéarisée**.
+
+.. figure:: Images/CTN_Caracteristique_Diviseur_tension.png
    :width: 843
    :height: 581
    :scale: 50 %
    :alt: 
    :align: center
 
-Entre 0 et 40°C, la température en fonction de la tension est donnée par la relation suivante :
+   Évolution de la tension en fonction de la température pour :math:`R_0=10\,k\Omega`
 
-.. image:: Images/cnt_formule_1.png
-   :width: 191
-   :height: 98
-   :scale: 50 %
-   :alt: 
-   :align: center
+Entre 0 et 40°C, il est donc possible de calculer la température à partir de la tension mesurée par la relation suivante :
+
+.. math::
+
+   T = \dfrac{u-b}{a}
+
 
 
 
@@ -77,38 +80,37 @@ Montage
 Programme
 ---------
 
-.. code:: arduino
+.. code-block:: arduino
 
    /*
     * Mesure d une température avec une CTN 10k (25°C)
     * placée dans un pont diviseur de tension avec
     * une résistance de 10k.
     */
-   
-   float tension;
-   int temperature;    // Arrondi à l entier
-   float a = -0.0441;  // Coeff. directeur modèle
-   float b = 3.66;     // Ordonnée à l origine modèle
-   
+
+   float tension;      // Tension mesurée sur A0
+   int temperature;    // Température en °C
+   float a = -0.0441;  // Coeff. directeur du modèle
+   float b = 3.66;     // Ordonnée à l origine du modèle
+
    void setup() {
      Serial.begin(9600);  // Paramétrage du port série
-   
    }
-   
+
    void loop() {
-     tension = analogRead(A0)*5.0/1023; // Lecture tension
-     temperature = (tension-b)/a;       // Calcul température
+     tension = analogRead(A0)*5.0/1023; // Lecture tension en V
+     temperature = (tension-b)/a;       // Calcul température en °C
      Serial.print("U = ");              // Affichage dans moniteur série
      Serial.println(tension);
      Serial.print("T= ");
      Serial.println(temperature);
-     delay(1000);                       // Temporisation d une seconde
+     delay(1000);                       // Temporisation d'une seconde
    }
    
 A retenir
 ---------
 
-Placer un **capteur résistif** (température, pression, lumière, ...) dans un **pont diviseur de tension** reste une solution simple d'interfacage avec un microcontrôleur. Mais pas la plus efficace !
+Placer un **capteur résistif** (température, pression, lumière, ...) dans un **pont diviseur de tension** reste une solution simple d'interfacage avec un microcontrôleur.
 
 Allez plus loin
 ---------------
@@ -118,14 +120,11 @@ Mesurer la résistance de la CTN
 
 Dans le pont diviseur de tension, la résistance de la CTN s'exprime par la relation suivante :
 
-.. image:: Images/cnt_formule_2.png
-   :width: 268
-   :height: 103
-   :scale: 50 %
-   :alt: 
-   :align: center
+.. math::
 
-.. code:: arduino
+   R = R_0 \times\dfrac{u}{V_{cc}-u}
+
+.. code-block:: arduino
 
    /*
     * Mesure de la résistance d une CTN
@@ -148,7 +147,7 @@ Dans le pont diviseur de tension, la résistance de la CTN s'exprime par la rela
       Serial.println(u);
       Serial.print("R = ");
       Serial.println(R);            // Fin affichage
-      delay(1000);                  // Temporisation en milli seconde
+      delay(1000);                  // Temporisation de 1s
    }
 
 Mesure de la température avec la relation de Steinhart-Hart
@@ -156,21 +155,18 @@ Mesure de la température avec la relation de Steinhart-Hart
 
 Sur une grande plage de variation , la relation entre la température (en K) et la résistance de la CTN est :
 
-.. image:: Images/cnt_formule_3.png
-   :width: 508
-   :height: 98
-   :scale: 50 %
-   :alt: 
-   :align: center
+.. math::
+
+   \dfrac{1}{T} = A + B \times \ln(R) + C \times (\ln(R))^3
 
 A, B et C sont les coefficients de Steinhart-Hart. Ils sont donnés par le constructeur
 ou peuvent se déterminer expérimentalement à partir de trois points de mesure.
 
 .. note::
 
-   Un programme Python pour déterminer ces trois coefficients est disponible sur Wikipédia (https://fr.wikipedia.org/wiki/Relation_de_Steinhart-Hart).
+   Un programme Python pour déterminer ces trois coefficients A, B et C est disponible sur `Wikipédia <https://fr.wikipedia.org/wiki/Relation_de_Steinhart-Hart>`_.
 
-.. code:: arduino
+.. code-block:: arduino
 
    /*
     * Mesure de la température avec la relation de Steinhart-Hart
@@ -182,18 +178,18 @@ ou peuvent se déterminer expérimentalement à partir de trois points de mesure
    #define B   2.1723e-4
    #define C   3.2770e-7
 
-   float u;   // Tension CTN
-   float R;   // Résistance CTN
-   float logR;
-   float T;
+   float u;            // Tension CTN
+   float R;            // Résistance CTN
+   float logR;         // ln(R)
+   float T;            // Température en °C
 
-    
+
    void setup() {
       Serial.begin(9600);  // Paramétrage du port série
    }
-    
+
    void loop() {
-      u = analogRead(A0)*5.0/1023;                  // Lecture tension
+      u = analogRead(A0)*5.0/1023;                  // Lecture tension en V
       R = Ro * u/(Vcc-u);                           // Calcul de la résistance
       logR = log(R);                                // Calcul de ln(R)
       T = (1.0 / (A + B*logR + C*logR*logR*logR));  // Calcul de la température
@@ -202,7 +198,7 @@ ou peuvent se déterminer expérimentalement à partir de trois points de mesure
       Serial.println(R);
       Serial.print("T = ");
       Serial.println(T);                            // Fin affichage
-      delay(1000);                                  // Temporisation en mille seconde
+      delay(1000);                                  // Temporisation de 1s
    }
 
 Simplification de relation de Steinhart-Hart
@@ -210,16 +206,13 @@ Simplification de relation de Steinhart-Hart
 
 Sur une plage de variation plus réduite de la température, la relation de Steinhart-Hart permet d'écrire :
 
-.. image:: Images/cnt_formule_4.png
-   :width: 328
-   :height: 122
-   :scale: 50 %
-   :alt: 
-   :align: center
+.. math::
+
+   R \approx R_0 \times e^{\beta(\frac{1}{T}-\frac{1}{T_0})}
 
 * :math:`{R_0}` est la valeur de la résistance pour la température :math:`{T_0}`.
 
-* :math:`{\beta}` (en K) est coefficient de température.
+* :math:`{\beta}` (en K).
 
 .. figure:: Images/CTN_Caracteristique_R(T)_modele.png
    :width: 811
@@ -230,12 +223,9 @@ Sur une plage de variation plus réduite de la température, la relation de Stei
 
 La détermination de la température (en K) s'effectue à l'aide de la relation suivante :
 
-.. image:: Images/cnt_formule_5.png
-   :width: 360
-   :height: 121
-   :scale: 50 %
-   :alt: 
-   :align: center
+.. math::
+
+   \dfrac{1}{T} = \dfrac{1}{\beta}\times\ln(\dfrac{R}{R_0})+\dfrac{1}{T_0}
 
 
 
