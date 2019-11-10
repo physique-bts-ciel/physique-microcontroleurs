@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Allez plus loin &mdash; Documentation Microcontroleurs &amp; Sciences physiques </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Microcontroleurs & Sciences physiques
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../1_introduction/introduction.html">Introduction aux microcontrôleurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_arduino/index.html">Les microcontrôleurs Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_bases/index.html">Les bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Nouveaux programmes du lycée</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_aller_plus_loin/index.html">Aller plus loin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Microcontroleurs & Sciences physiques</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Allez plus loin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/4_lycee/1_seconde_ctn_suite.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="allez-plus-loin">
+<h1>Allez plus loin<a class="headerlink" href="#allez-plus-loin" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="mesurer-la-resistance-de-la-ctn">
+<h2>Mesurer la résistance de la CTN<a class="headerlink" href="#mesurer-la-resistance-de-la-ctn" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans le pont diviseur de tension, la résistance de la CTN s’exprime par la relation suivante :</p>
+<div class="math notranslate nohighlight">
+\[R = R_0 \cdot \dfrac{u}{V_{cc}-u}\]</div>
+<div class="code arduino highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Mesure</span> <span class="n">de</span> <span class="n">la</span> <span class="n">résistance</span> <span class="n">d</span> <span class="n">une</span> <span class="n">CTN</span>
+ <span class="o">*/</span>
+
+<span class="c1">#define Vcc 5       // Tension d&#39;alimentation</span>
+<span class="c1">#define Ro  10000   // Résistance du pont</span>
+
+<span class="nb">float</span> <span class="n">u</span><span class="p">;</span>            <span class="o">//</span> <span class="n">Tension</span> <span class="n">CTN</span>
+<span class="nb">float</span> <span class="n">R</span><span class="p">;</span>            <span class="o">//</span> <span class="n">Résistance</span> <span class="n">CTN</span>
+
+ <span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Paramétrage</span> <span class="n">du</span> <span class="n">port</span> <span class="n">série</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">u</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">A0</span><span class="p">)</span><span class="o">*</span><span class="mf">5.0</span><span class="o">/</span><span class="mi">1023</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Lecture</span> <span class="n">tension</span>
+   <span class="n">R</span> <span class="o">=</span> <span class="n">Ro</span> <span class="o">*</span> <span class="n">u</span><span class="o">/</span><span class="p">(</span><span class="n">Vcc</span><span class="o">-</span><span class="n">u</span><span class="p">);</span>           <span class="o">//</span> <span class="n">Calcul</span> <span class="n">de</span> <span class="n">la</span> <span class="n">résistance</span>
+   <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;U = &quot;</span><span class="p">);</span>         <span class="o">//</span> <span class="n">Début</span> <span class="n">affichage</span>
+   <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+   <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;R = &quot;</span><span class="p">);</span>
+   <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>            <span class="o">//</span> <span class="n">Fin</span> <span class="n">affichage</span>
+   <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>                  <span class="o">//</span> <span class="n">Temporisation</span> <span class="n">en</span> <span class="n">milli</span> <span class="n">seconde</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relation-de-steinhart-hart">
+<h2>Relation de Steinhart-Hart<a class="headerlink" href="#relation-de-steinhart-hart" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Sur une grande plage de variation , la relation en la température (en K) et la résistance de la CTN est :</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{1}{T}=A+B\cdot\ln(R)+C\cdot(\ln(R))^3\]</div>
+<p>A, B et C sont les coefficients de Steinhart-Hart. Ils sont donnés par le constructeur
+ou peuvent se déterminer expérimentalement à partir de trois points de mesure (voir <a class="reference external" href="https://fr.wikipedia.org/wiki/Relation_de_Steinhart-Hart">https://fr.wikipedia.org/wiki/Relation_de_Steinhart-Hart</a>).</p>
+<div class="code arduino highlight-default notranslate"><div class="highlight"><pre><span></span>/*
+ * Mesure de la température avec la relation de Steinhart-Hart
+ */
+
+#define Vcc 5       // Tension d&#39;alimentation
+#define Ro  10000   // Résistance du pont
+#define A   1.0832e-3
+#define B   2.1723e-4
+#define C   3.2770e-7
+
+float u;   // Tension CTN
+float R;   // Résistance CTN
+float logR;
+float T;
+
+
+void setup() {
+   Serial.begin(9600);  // Paramétrage du port série
+}
+
+void loop() {
+   u = analogRead(A0)*5.0/1023;                  // Lecture tension
+   R = Ro * u/(Vcc-u);                           // Calcul de la résistance
+   logR = log(R);                                // Calcul de ln(R)
+   T = (1.0 / (A + B*logR + C*logR*logR*logR));  // Calcul de la température
+   T = T - 273.15;                               // Conversion en °C
+   Serial.print(&quot;R = &quot;);                         // Début affichage
+   Serial.println(R);
+   Serial.print(&quot;T = &quot;);
+   Serial.println(T);                            // Fin affichage
+   delay(1000);                                  // Temporisation en mille seconde
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="simplification-de-relation-de-steinhart-hart">
+<h2>Simplification de relation de Steinhart-Hart<a class="headerlink" href="#simplification-de-relation-de-steinhart-hart" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Sur une plage de variation plus réduite de la température, la relation de Steinhart-Hart permet d’écrire :</p>
+<div class="math notranslate nohighlight">
+\[R \approx R_0 \cdot e^{\beta(\dfrac{1}{T}-\dfrac{1}{T_0})}\]</div>
+<ul class="simple">
+<li><span class="math notranslate nohighlight">\({R_0}\)</span> est la valeur de la résistance pour la température <span class="math notranslate nohighlight">\({T_0}\)</span>.</li>
+<li><span class="math notranslate nohighlight">\({\beta}\)</span> (en K) est coefficient de température.</li>
+</ul>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/CTN_Caracteristique_R(T)_modele.png"><img alt="" src="../_images/CTN_Caracteristique_R(T)_modele.png" style="width: 405.5px; height: 260.5px;" /></a>
+</div>
+<p>La détermination de la température (en K) s’effectue à l’aide de la relation suivante :</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{1}{T}=\dfrac{1}{\beta}\cdot\ln(\dfrac{R}{R_0})+\dfrac{1}{T_0}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, THERINCOURT David
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

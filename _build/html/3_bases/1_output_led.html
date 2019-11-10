@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Allumer une LED (sorties numériques) &mdash; Documentation Microcontroleurs &amp; Sciences physiques </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Modifier l’intensité lumineuse d’une LED (sorties PWM)" href="2_pwm_led.html" />
+    <link rel="prev" title="Les bases" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Microcontroleurs & Sciences physiques
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_introduction/introduction.html">Introduction aux microcontrôleurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_arduino/index.html">Les microcontrôleurs Arduino</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Les bases</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Allumer une LED (sorties numériques)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#principe">Principe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#montage">Montage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#programme">Programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-retenir">A retenir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#applications">Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#avec-python-et-nanpy">Avec Python et Nanpy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="2_pwm_led.html">Modifier l’intensité lumineuse d’une LED (sorties PWM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_communication_serie.html">Communication avec un ordinateur (port série)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_afficheur.html">Afficheur LCD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_can_tension.html">Mesurer une tension (CAN)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../4_lycee/index.html">Nouveaux programmes du lycée</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_aller_plus_loin/index.html">Aller plus loin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Microcontroleurs & Sciences physiques</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Les bases</a> &raquo;</li>
+        
+      <li>Allumer une LED (sorties numériques)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/3_bases/1_output_led.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="allumer-une-led-sorties-numeriques">
+<h1>Allumer une LED (sorties numériques)<a class="headerlink" href="#allumer-une-led-sorties-numeriques" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="principe">
+<h2>Principe<a class="headerlink" href="#principe" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les entrées/sorties numériques de la carte Arduino UNO sont accessibles sur les broches 0 à 13.</p>
+<a class="reference internal image-reference" href="../_images/01_arduino_uno_sorties_numeriques.png"><img alt="" class="align-center" src="../_images/01_arduino_uno_sorties_numeriques.png" style="width: 270.0px; height: 240.0px;" /></a>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Une sortie numérique ne peut délivrer que 40 mA au maximum (200 mA pour l’ensemble des sorties). Au delà de cette valeur, la carte peut-être détériorée !</p>
+</div>
+</div>
+<div class="section" id="montage">
+<h2>Montage<a class="headerlink" href="#montage" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une LED en série avec une résistance est connectée entre la broche 11 et la masse (GND).</p>
+<a class="reference internal image-reference" href="../_images/Arduino_LED_PWM.png"><img alt="" class="align-center" src="../_images/Arduino_LED_PWM.png" style="width: 321.59999999999997px; height: 253.79999999999998px;" /></a>
+<p>La formule suivante donne le calcul de la résistance en fonction du courant nominal et de la couleur de la LED :</p>
+<div class="math notranslate nohighlight">
+\[R = \dfrac{V_{CC}-V_S}{I}\]</div>
+<ul class="simple">
+<li><span class="math notranslate nohighlight">\(V_{CC}\)</span> est la tension d’alimentation (5 V) ;</li>
+<li><span class="math notranslate nohighlight">\(V_S \approx 2 V\)</span> est la tension de seuil de la LED (dépend de la couleur) ;</li>
+<li><span class="math notranslate nohighlight">\(I\)</span> est l’intensité du courant généralement de l’ordre de 20 mA.</li>
+</ul>
+<p>Une valeur de 220 <span class="math notranslate nohighlight">\({\Omega}\)</span> est un bon compromis.</p>
+</div>
+<div class="section" id="programme">
+<h2>Programme<a class="headerlink" href="#programme" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="code arduino highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">LED</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>             <span class="o">//</span> <span class="n">LED</span> <span class="n">connectée</span> <span class="n">sur</span> <span class="n">broche</span> <span class="mi">11</span>
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>   <span class="o">//</span> <span class="n">Broche</span> <span class="n">LED</span> <span class="n">paramétrée</span> <span class="n">en</span> <span class="n">sortie</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="o">//</span> <span class="n">LED</span> <span class="n">éteinte</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>            <span class="o">//</span> <span class="n">Attendre</span> <span class="mi">1</span> <span class="n">s</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>    <span class="o">//</span> <span class="n">LED</span> <span class="n">allumée</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>            <span class="o">//</span> <span class="n">Attendre</span> <span class="mi">1</span> <span class="n">s</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Dans la fonction <code class="docutils literal notranslate"><span class="pre">setup()</span></code> :</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">pinMode(LED,OUTPUT)</span></code> paramètre la broche <code class="docutils literal notranslate"><span class="pre">LED</span></code> en sortie (<code class="docutils literal notranslate"><span class="pre">OUPUT</span></code>).</li>
+</ul>
+</div></blockquote>
+<p>Dans la fonction <code class="docutils literal notranslate"><span class="pre">loop()</span></code> :</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">digitalWrite(LED,LOW)</span></code> fixe un niveau logique 0 (<code class="docutils literal notranslate"><span class="pre">LOW</span></code>) sur la broche <code class="docutils literal notranslate"><span class="pre">LED</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">digitalWrite(LED,HIGH)</span></code> fixe un niveau logique 1 (<code class="docutils literal notranslate"><span class="pre">HIGH</span></code>) sur la broche <code class="docutils literal notranslate"><span class="pre">LED</span></code>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="a-retenir">
+<h2>A retenir<a class="headerlink" href="#a-retenir" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Une <strong>sortie numérique présente deux états logiques</strong> : état bas (0 V) ou état haut (5 V).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Instruction</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pinMode(pin,OUTPUT)</span></code></td>
+<td>Configure le broche <code class="docutils literal notranslate"><span class="pre">pin</span></code> en sortie</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">digitalWrite(pin,LOW)</span></code></td>
+<td>Met la broche <code class="docutils literal notranslate"><span class="pre">pin</span></code> à l’état bas (0 V)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">digitalWrite(pin,HIGH)</span></code></td>
+<td>Met la broche <code class="docutils literal notranslate"><span class="pre">pin</span></code> à l’état haut (5 V)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Lien permanent vers ce titre">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Commande d’un actionneur (LED, relais, …) en tout ou rien.</li>
+<li>Communication numérique.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="avec-python-et-nanpy">
+<h2>Avec Python et Nanpy<a class="headerlink" href="#avec-python-et-nanpy" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nanpy</span> <span class="k">import</span> <span class="n">ArduinoApi</span>           <span class="c1"># Librairie du gestion des carte Arduino</span>
+<span class="kn">from</span> <span class="nn">nanpy</span> <span class="k">import</span> <span class="n">SerialManager</span>        <span class="c1"># Librairie de gestion du port série</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>                 <span class="c1"># Importation fonction sleep()</span>
+
+<span class="n">port</span> <span class="o">=</span> <span class="n">SerialManager</span><span class="p">()</span>                 <span class="c1"># Déclaration du port série</span>
+<span class="n">uno</span> <span class="o">=</span> <span class="n">ArduinoApi</span><span class="p">(</span><span class="n">connection</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>      <span class="c1"># Déclaration de la carte Arduino Uno</span>
+
+<span class="n">pinLed</span> <span class="o">=</span> <span class="mi">11</span>                            <span class="c1"># N° de broche où la Led est branchée</span>
+<span class="n">uno</span><span class="o">.</span><span class="n">pinMode</span><span class="p">(</span><span class="n">pinLed</span><span class="p">,</span><span class="n">uno</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">)</span>         <span class="c1"># Broche Led en sortie</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>                   <span class="c1"># Boucle : répéter 100 fois</span>
+    <span class="n">uno</span><span class="o">.</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinLed</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>         <span class="c1"># Led allumée</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                           <span class="c1"># Attendre 1 s</span>
+    <span class="n">uno</span><span class="o">.</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinLed</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>         <span class="c1"># Led eteinte</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                           <span class="c1"># Attendre 1 s</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="2_pwm_led.html" class="btn btn-neutral float-right" title="Modifier l’intensité lumineuse d’une LED (sorties PWM)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Les bases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, THERINCOURT David
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

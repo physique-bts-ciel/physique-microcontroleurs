@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Premier programme : Blink &mdash; Documentation Microcontroleurs &amp; Sciences physiques </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Particularité du langage Arduino" href="5_particularite_langage.html" />
+    <link rel="prev" title="Le logiciel Arduino" href="3_arduino_ide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Microcontroleurs & Sciences physiques
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_introduction/introduction.html">Introduction aux microcontrôleurs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Les microcontrôleurs Arduino</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_cartes_arduino.html">Les cartes Arduino pour les sciences physiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_arduino_ide.html">Le logiciel Arduino</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Premier programme : Blink</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#edition">Edition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#televersement">Téléversement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#execution">Exécution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="5_particularite_langage.html">Particularité du langage Arduino</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_nanpy.html">Pilotage d’une carte Arduino en Python avec Nanpy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../3_bases/index.html">Les bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_lycee/index.html">Nouveaux programmes du lycée</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_aller_plus_loin/index.html">Aller plus loin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Microcontroleurs & Sciences physiques</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Les microcontrôleurs Arduino</a> &raquo;</li>
+        
+      <li>Premier programme : Blink</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/2_arduino/4_exemple_blink.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="premier-programme-blink">
+<h1>Premier programme : Blink<a class="headerlink" href="#premier-programme-blink" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Le programme <strong>Blink</strong> propose de faire clignoter la LED intégrée à la carte de développement (connectée sur la broche 13).</p>
+<div class="section" id="edition">
+<h2>Edition<a class="headerlink" href="#edition" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le programme <strong>Blink</strong> est disponible dans les exemples du logiciel <strong>Arduino IDE</strong>.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/Blink_01_exemples_blink.png"><img alt="Ouvrir Blink" src="../_images/Blink_01_exemples_blink.png" style="width: 390.0px; height: 302.5px;" /></a>
+<p class="caption"><span class="caption-text">Ouvrir le programme Blink</span></p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/Blink_02_edition_blink.png"><img alt="Edition Blink" src="../_images/Blink_02_edition_blink.png" style="width: 375.0px; height: 300.0px;" /></a>
+<p class="caption"><span class="caption-text">Edition du programme Blink</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Un programme Arduino écrit en langage C/C++ est composé d’une suite d’intructions.</li>
+<li>Ces instruction sont effectuées dans l’ordre des lignes de code.</li>
+<li>Les <strong>commentaires</strong> en gris sont délimités par les caractères <code class="docutils literal notranslate"><span class="pre">/*</span></code> et <code class="docutils literal notranslate"><span class="pre">*/</span></code> sur plusieurs lignes ou commencent pas les caractères <code class="docutils literal notranslate"><span class="pre">//</span></code> sur une même ligne.</li>
+</ul>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/Blink_02_edition_blink_modifie.png"><img alt="Edition Blink" src="../_images/Blink_02_edition_blink_modifie.png" style="width: 389.9px; height: 366.09999999999997px;" /></a>
+<p class="caption"><span class="caption-text">Une version modifiée du programme Blink</span></p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p>Un progamme Arduino respecte toujours une <strong>structure spécifique</strong> composée en trois parties :</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Les déclarations : <strong>définitions</strong> des constantes et des variables ;</li>
+<li>La fonction <code class="docutils literal notranslate"><span class="pre">setup()</span></code> : <strong>configuration</strong> de la carte (entrées, sorties, port série, …) ;</li>
+<li>La fonction <code class="docutils literal notranslate"><span class="pre">loop()</span></code> : <strong>instructions du programme exécutées</strong> dans une <strong>boucle infinie</strong> (sans fin).</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="compilation">
+<h2>Compilation<a class="headerlink" href="#compilation" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/Blink_03_compilation_choix_carte.png"><img alt="Edition Blink" src="../_images/Blink_03_compilation_choix_carte.png" style="width: 407.5px; height: 300.0px;" /></a>
+<p class="caption"><span class="caption-text">Choix du type de carte</span></p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Avant de lancer la compilation, il est important de <strong>choisir le modéle de carte Arduino utilisé</strong>. Le programme généré est dépendant du type de microcontrôleur présent sur la carte.</p>
+</div>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/Blink_03_compilation_ksnip.png"><img alt="Edition Blink" src="../_images/Blink_03_compilation_ksnip.png" style="width: 350.0px; height: 420.0px;" /></a>
+<p class="caption"><span class="caption-text">Puis la compilation peut s’effectuée !</span></p>
+</div>
+</div>
+<div class="section" id="televersement">
+<h2>Téléversement<a class="headerlink" href="#televersement" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/Blink_04_televersement_choix_port.png"><img alt="Edition Blink" src="../_images/Blink_04_televersement_choix_port.png" style="width: 427.5px; height: 170.0px;" /></a>
+<p class="caption"><span class="caption-text">Choix du port de communication</span></p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Pour téléverser le programme obtenu, il est nécessaire de <strong>sélectionner le port de communication série</strong> sur lequel est connectée la carte Arduino.</p>
+</div>
+<div class="figure align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/Blink_04_televersement_ksnip.png"><img alt="Edition Blink" src="../_images/Blink_04_televersement_ksnip.png" style="width: 350.0px; height: 420.0px;" /></a>
+<p class="caption"><span class="caption-text">Téléversement du programme</span></p>
+</div>
+</div>
+<div class="section" id="execution">
+<h2>Exécution<a class="headerlink" href="#execution" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le programme s’exécute sur la carte Arduino de façon autonome (sans ordinateur).</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/Blink_05_execution_ksnip.png"><img alt="Edition Blink" src="../_images/Blink_05_execution_ksnip.png" style="width: 280.0px; height: 198.1px;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="5_particularite_langage.html" class="btn btn-neutral float-right" title="Particularité du langage Arduino" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="3_arduino_ide.html" class="btn btn-neutral float-left" title="Le logiciel Arduino" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, THERINCOURT David
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Les cartes Arduino pour les sciences physiques &mdash; Documentation Microcontroleurs &amp; Sciences physiques </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Le logiciel Arduino" href="3_arduino_ide.html" />
+    <link rel="prev" title="Introduction" href="1_introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Microcontroleurs & Sciences physiques
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_introduction/introduction.html">Introduction aux microcontrôleurs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Les microcontrôleurs Arduino</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_introduction.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Les cartes Arduino pour les sciences physiques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#la-carte-arduino-uno-rev-3">La carte Arduino UNO (Rev 3)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#les-cartes-specifiques-pour-les-sciences-physiques">Les cartes spécifiques pour les sciences physiques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#educaduino-lab-eurosmart">Educaduino Lab (Eurosmart)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pluguino-uno-sciencethic">Plug’Uino® Uno (Sciencéthic)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="3_arduino_ide.html">Le logiciel Arduino</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_exemple_blink.html">Premier programme : Blink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_particularite_langage.html">Particularité du langage Arduino</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_nanpy.html">Pilotage d’une carte Arduino en Python avec Nanpy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../3_bases/index.html">Les bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_lycee/index.html">Nouveaux programmes du lycée</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_aller_plus_loin/index.html">Aller plus loin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Microcontroleurs & Sciences physiques</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Les microcontrôleurs Arduino</a> &raquo;</li>
+        
+      <li>Les cartes Arduino pour les sciences physiques</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/2_arduino/2_cartes_arduino.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="les-cartes-arduino-pour-les-sciences-physiques">
+<h1>Les cartes Arduino pour les sciences physiques<a class="headerlink" href="#les-cartes-arduino-pour-les-sciences-physiques" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="la-carte-arduino-uno-rev-3">
+<h2>La carte Arduino UNO (Rev 3)<a class="headerlink" href="#la-carte-arduino-uno-rev-3" title="Lien permanent vers ce titre">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/Arduino_Uno_rev3_wikipedia1.jpg"><img alt="Quelques cartes Arduino." class="align-center" src="../_images/Arduino_Uno_rev3_wikipedia1.jpg" style="width: 400.0px; height: 255.0px;" /></a>
+<p><strong>Arduino UNO</strong> est une des cartes officielles les plus récentes et économiques.</p>
+<p>Caractéristiques principales :</p>
+<blockquote>
+<div><ul class="simple">
+<li>microcontroleur 8 bits ATMEGA328P cadencé à 16 Mhz ;</li>
+<li>alimentation externe (7 à 12 V) ou USB (5 V);</li>
+<li>programmation et communication via port USB ;</li>
+<li>14 broches d’entrées/sorties numériques dont 6 PWM ;</li>
+<li>6 entrées analogiques sur 10 bits ;</li>
+<li>1 port I2C (communication avec capteurs/actionneurs numériques) ;</li>
+<li>1 port UART (communication série) ;</li>
+<li>3 timers (comptage et mesure de temps) ;</li>
+<li>gestion des interruptions.</li>
+</ul>
+</div></blockquote>
+<a class="reference internal image-reference" href="../_images/arduino-uno_rev3_pixabay.png"><img alt="Quelques cartes Arduino." class="align-center" src="../_images/arduino-uno_rev3_pixabay.png" style="width: 336.0px; height: 237.99999999999997px;" /></a>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Les niveaux de tension acceptables sur les broches d’entrées doivent être <strong>comprises entre 0 V et 5 V</strong> sous peine de détruire le microcontrôleur ou la carte !</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">La carte Arduino UNO ne possède pas de vraies sorties analogiques mais des sorties à <strong>modulation de largeur d’impulsion</strong> (MLI). Ce sont les six fameuses <strong>sorties PWM</strong> (Pulse Width Modulation).</p>
+</div>
+</div>
+<div class="section" id="les-cartes-specifiques-pour-les-sciences-physiques">
+<h2>Les cartes spécifiques pour les sciences physiques<a class="headerlink" href="#les-cartes-specifiques-pour-les-sciences-physiques" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il s’agit de cartes spécialement concues pour les sciences physiques avec des <strong>protections sur les ports d’entrée/sortie</strong> contre les mauvaises manipulations (ce type de protections n’existe pas sur les cartes classiques comme l’Arduino Uno). Ces cartes disposent de leurs <strong>propres capteurs</strong> avec une connectique particulière.</p>
+<div class="section" id="educaduino-lab-eurosmart">
+<h3>Educaduino Lab (Eurosmart)<a class="headerlink" href="#educaduino-lab-eurosmart" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://educaduino-lab.com/">https://educaduino-lab.com/</a></p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/Educaduino_Lab_DT.jpg"><img alt="Quelques cartes Arduino." src="../_images/Educaduino_Lab_DT.jpg" style="width: 400.0px; height: 250.0px;" /></a>
+<p class="caption"><span class="caption-text">La carte Educaduino-Lab (E-LAB)</span></p>
+</div>
+<p>La carte <strong>Educaduino Lab</strong> a été concue sur la base d’une carte Arduino MEGA 2560. Cette dernière est équivalente à une carte arduino UNO mais avec plus de mémoire et surtout <strong>plus de ports d’entrée/sortie</strong>. Ce qui a permis à Eurosmart d’y placer des <strong>connecteurs USB pour ses propres capteurs</strong> tout en gardant la connectique classique de l’Arduino UNO.</p>
+<p>Caractéristiques principales :</p>
+<blockquote>
+<div><ul class="simple">
+<li>microcontrôleur ATMEGA 2560 (comme l’Arduino MEGA 2560) ;</li>
+<li>protection des ports d’entrée/sortie ;</li>
+<li>brochage compatible Arduino Uno Rev 3 (pin 0.8mm, shield Grove, …) ;</li>
+<li>ports supplémentaires en USB pour capteurs Educaduino-Lab ;</li>
+</ul>
+</div></blockquote>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/educaduino_manip_temperature.png"><img alt="Quelques cartes Arduino." src="../_images/educaduino_manip_temperature.png" style="width: 400.0px; height: 242.0px;" /></a>
+<p class="caption"><span class="caption-text">Mesure d’une température (image : Eurosmart)</span></p>
+</div>
+<p>Une malette avec un afficheur LCD et plusieurs capteurs adaptée au programme du lycée est également proposée.</p>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/educaduino_malette.png"><img alt="" src="../_images/educaduino_malette.png" style="width: 400.0px; height: 393.5px;" /></a>
+<p class="caption"><span class="caption-text">Kit sciences-physiques 2nde/1ère (image : Eurosmart)</span></p>
+</div>
+</div>
+<div class="section" id="pluguino-uno-sciencethic">
+<h3>Plug’Uino® Uno (Sciencéthic)<a class="headerlink" href="#pluguino-uno-sciencethic" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://www.sciencethic.com/">https://www.sciencethic.com/</a></p>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/sciencethic_plugiuno_uno.png"><img alt="" src="../_images/sciencethic_plugiuno_uno.png" style="width: 282.79999999999995px; height: 260.4px;" /></a>
+<p class="caption"><span class="caption-text">La carte Plug’Uino ® Uno (image : Sciencéthic)</span></p>
+</div>
+<p>Sciencéthic propose également une carte <strong>Plug’Uino Uno</strong> protégée contre les mauvaises manipulations et 100% compatible Arduino UNO Rev 3.</p>
+<p>Caractéristiques principales :</p>
+<blockquote>
+<div><ul class="simple">
+<li>microcontrôleur ATMEGA 328P (comme l’Arduino Uno) ;</li>
+<li>protection des ports d’entrée/sortie ;</li>
+<li>brochage compatible Arduino Uno Rev 3 (pin 0.8mm, shield Grove, …) ;</li>
+<li>connecteurs SATA pour les capteurs Plug’uino ;</li>
+</ul>
+</div></blockquote>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/sciencethic_pluguino_uno_pression.png"><img alt="" src="../_images/sciencethic_pluguino_uno_pression.png" style="width: 336.7px; height: 199.5px;" /></a>
+<p class="caption"><span class="caption-text">Capteur de pression et loi de Mariotte (image : Sciencéthic)</span></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="3_arduino_ide.html" class="btn btn-neutral float-right" title="Le logiciel Arduino" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="1_introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, THERINCOURT David
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

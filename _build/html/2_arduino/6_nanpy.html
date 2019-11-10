@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pilotage d’une carte Arduino en Python avec Nanpy &mdash; Documentation Microcontroleurs &amp; Sciences physiques </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Les bases" href="../3_bases/index.html" />
+    <link rel="prev" title="Particularité du langage Arduino" href="5_particularite_langage.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Microcontroleurs & Sciences physiques
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_introduction/introduction.html">Introduction aux microcontrôleurs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Les microcontrôleurs Arduino</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_cartes_arduino.html">Les cartes Arduino pour les sciences physiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_arduino_ide.html">Le logiciel Arduino</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_exemple_blink.html">Premier programme : Blink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_particularite_langage.html">Particularité du langage Arduino</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pilotage d’une carte Arduino en Python avec Nanpy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qu-est-ce-que-nanpy">Qu’est-ce que Nanpy ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#principe-de-fonctionnement">Principe de fonctionnement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-de-firmware-nanpy-sur-une-carte-arduino">Installation de firmware Nanpy sur une carte Arduino</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#telechargement-du-firmware">Téléchargement du firmware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-du-firmware-dans-le-logiciel-arduino">Installation du firmware dans le logiciel Arduino</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#televersement-du-firmware-dans-la-carte-arduino">Téléversement du firmware dans la carte Arduino</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installer-la-libairie-nanpy-sur-l-ordinateur">Installer la libairie Nanpy sur l’ordinateur</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pour-edupython">Pour EduPython</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pour-les-autres-distributions">Pour les autres distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#exemple-blink">Exemple : Blink</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../3_bases/index.html">Les bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_lycee/index.html">Nouveaux programmes du lycée</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_aller_plus_loin/index.html">Aller plus loin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Microcontroleurs & Sciences physiques</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Les microcontrôleurs Arduino</a> &raquo;</li>
+        
+      <li>Pilotage d’une carte Arduino en Python avec Nanpy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/2_arduino/6_nanpy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pilotage-d-une-carte-arduino-en-python-avec-nanpy">
+<h1>Pilotage d’une carte Arduino en Python avec Nanpy<a class="headerlink" href="#pilotage-d-une-carte-arduino-en-python-avec-nanpy" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="qu-est-ce-que-nanpy">
+<h2>Qu’est-ce que Nanpy ?<a class="headerlink" href="#qu-est-ce-que-nanpy" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nanpy est une librairie pour Python utilisée pour le <strong>pilotage</strong> d’une carte Arduino par le câble USB (port série).</p>
+<p><a class="reference external" href="https://nanpy.github.io/">https://nanpy.github.io/</a></p>
+</div>
+<div class="section" id="principe-de-fonctionnement">
+<h2>Principe de fonctionnement<a class="headerlink" href="#principe-de-fonctionnement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La carte Arduino a été préalablement programmer avec le firmware <strong>Nanpy</strong> téléversé à partir du logiciel Arduino. Ce firmware est un <strong>programme particulier</strong> (écrit en langage Arduino C/C++) qui <strong>gère le  protocole de communication</strong> entre le programme Python exécuté sur l’ordinateur et la carte Arduino.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Il est important de retenir que <strong>Nanpy ne permet pas un fonctionnement autonome</strong> de la carte Arduino puisque le carte doit-être <strong>constamment connectée à l’ordinateur</strong> sur lequel le programme Python est exécuté !</p>
+</div>
+</div>
+<div class="section" id="installation-de-firmware-nanpy-sur-une-carte-arduino">
+<h2>Installation de firmware Nanpy sur une carte Arduino<a class="headerlink" href="#installation-de-firmware-nanpy-sur-une-carte-arduino" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="telechargement-du-firmware">
+<h3>Téléchargement du firmware<a class="headerlink" href="#telechargement-du-firmware" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Le fichier <code class="docutils literal notranslate"><span class="pre">nanpy-firmware-master.zip</span></code> est une librairie Arduino contenant le firmware Nanpy à installer sur la carte Arduino.</p>
+<p>Ce fichier est à télécharger sur le site <a class="reference external" href="https://github.com/nanpy/nanpy-firmware">https://github.com/nanpy/nanpy-firmware</a>.</p>
+<a class="reference internal image-reference" href="../_images/nanpy_telechargement_firmware_ksnip.png"><img alt="" class="align-center" src="../_images/nanpy_telechargement_firmware_ksnip.png" style="width: 499.0px; height: 265.0px;" /></a>
+</div>
+<div class="section" id="installation-du-firmware-dans-le-logiciel-arduino">
+<h3>Installation du firmware dans le logiciel Arduino<a class="headerlink" href="#installation-du-firmware-dans-le-logiciel-arduino" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Le fichier <code class="docutils literal notranslate"><span class="pre">nanpy-firmware-master.zip</span></code> est à installer dans les librairies d’Arduino à partir du menu <cite>Croquis &gt; Inclure une bibliothèque &gt; Ajouter la bibliothèque au format .Zip …</cite></p>
+<a class="reference internal image-reference" href="../_images/nanpy_ajouter_librairie_ksnip.png"><img alt="" class="align-center" src="../_images/nanpy_ajouter_librairie_ksnip.png" style="width: 375.0px; height: 200.0px;" /></a>
+</div>
+<div class="section" id="televersement-du-firmware-dans-la-carte-arduino">
+<h3>Téléversement du firmware dans la carte Arduino<a class="headerlink" href="#televersement-du-firmware-dans-la-carte-arduino" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Ouvrir le fichier d’exemple <code class="docutils literal notranslate"><span class="pre">Nampy</span></code> à partir du menu :</p>
+<p><em>Fichier &gt; Exemples &gt; nanpy-firmware-master &gt; Nanpy</em></p>
+<a class="reference internal image-reference" href="../_images/nanpy_ouvrir_exemple_ksnip.png"><img alt="" class="align-center" src="../_images/nanpy_ouvrir_exemple_ksnip.png" style="width: 340.0px; height: 420.0px;" /></a>
+<p>Puis <strong>téléverser</strong> le programme dans la carte Arduino.</p>
+<a class="reference internal image-reference" href="../_images/nanpy_televersement_ksnip.png"><img alt="" class="align-center" src="../_images/nanpy_televersement_ksnip.png" style="width: 350.0px; height: 394.09999999999997px;" /></a>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Ne pas oublier de sélectionner le type de carte (ex. Arduino Uno) et le port de communication série (ex. COM3) dans le menu <em>Outils</em> avant le téléversement du firmware !</p>
+</div>
+<p>La carte est mainteanant prête pour un fonctionnement avec Nanpy !</p>
+</div>
+</div>
+<div class="section" id="installer-la-libairie-nanpy-sur-l-ordinateur">
+<h2>Installer la libairie Nanpy sur l’ordinateur<a class="headerlink" href="#installer-la-libairie-nanpy-sur-l-ordinateur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L’installation dépend de la distribution Python utilisée sur l’ordinateur.</p>
+<div class="section" id="pour-edupython">
+<h3>Pour EduPython<a class="headerlink" href="#pour-edupython" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://edupython.tuxfamily.org/">https://edupython.tuxfamily.org/</a></p>
+<p>Il n’y a rien à faire car la librairie Nanpy est installée par défaut.</p>
+</div>
+<div class="section" id="pour-les-autres-distributions">
+<h3>Pour les autres distributions<a class="headerlink" href="#pour-les-autres-distributions" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Il faut installer manuellement à partir du dépôt internet <code class="docutils literal notranslate"><span class="pre">Pypi</span></code> (<a class="reference external" href="https://pypi.org/project/nanpy/">https://pypi.org/project/nanpy/</a>) à l’aide de la commande <code class="docutils literal notranslate"><span class="pre">pip</span></code> :</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">nanpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="exemple-blink">
+<h2>Exemple : Blink<a class="headerlink" href="#exemple-blink" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Voici un exemple du programme <strong>Blink</strong> en Python.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nanpy</span> <span class="k">import</span> <span class="n">ArduinoApi</span>           <span class="c1"># Librairie du gestion des carte Arduino</span>
+<span class="kn">from</span> <span class="nn">nanpy</span> <span class="k">import</span> <span class="n">SerialManager</span>        <span class="c1"># Librairie de gestion du port série</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>                 <span class="c1"># Importation fonction sleep()</span>
+
+<span class="n">port</span> <span class="o">=</span> <span class="n">SerialManager</span><span class="p">()</span>                 <span class="c1"># Déclaration du port série</span>
+<span class="n">uno</span> <span class="o">=</span> <span class="n">ArduinoApi</span><span class="p">(</span><span class="n">connection</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>      <span class="c1"># Déclaration de la carte Arduino Uno</span>
+
+<span class="n">pinLed</span> <span class="o">=</span> <span class="mi">13</span>                            <span class="c1"># Led intégrée branchée sur boche 13</span>
+<span class="n">uno</span><span class="o">.</span><span class="n">pinMode</span><span class="p">(</span><span class="n">pinLed</span><span class="p">,</span><span class="n">uno</span><span class="o">.</span><span class="n">OUTPUT</span><span class="p">)</span>         <span class="c1"># Broche Led en sortie</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>                            <span class="c1"># Boucle infinie</span>
+    <span class="n">uno</span><span class="o">.</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinLed</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>         <span class="c1"># Led allumée</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                           <span class="c1"># Attendre 1 s</span>
+    <span class="n">uno</span><span class="o">.</span><span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinLed</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>         <span class="c1"># Led éteinte</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                           <span class="c1"># Attendre 1 s</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../3_bases/index.html" class="btn btn-neutral float-right" title="Les bases" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="5_particularite_langage.html" class="btn btn-neutral float-left" title="Particularité du langage Arduino" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, THERINCOURT David
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

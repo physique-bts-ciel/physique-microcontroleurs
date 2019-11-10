@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mesurer la célérité d’un son (première générale) &mdash; Documentation Microcontroleurs &amp; Sciences physiques </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Mesurer une pression - Loi de Mariotte (première générale)" href="4_premiere_pression_loi_mariotte.html" />
+    <link rel="prev" title="Émission d’un son (seconde générale)" href="2_seconde_emettre_son.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Microcontroleurs & Sciences physiques
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_introduction/introduction.html">Introduction aux microcontrôleurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_arduino/index.html">Les microcontrôleurs Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_bases/index.html">Les bases</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Nouveaux programmes du lycée</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_seconde_ctn.html">Capteur résistif - CTN (seconde générale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_seconde_emettre_son.html">Émission d’un son (seconde générale)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mesurer la célérité d’un son (première générale)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#principe">Principe</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-hc-sr04">Module HC-SR04</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fonctionnement">Fonctionnement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chronogrammes">Chronogrammes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#montage">Montage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#programme">Programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-retenir">A retenir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aller-plus-loin">Aller plus loin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="4_premiere_pression_loi_mariotte.html">Mesurer une pression - Loi de Mariotte (première générale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_premiere_pression_statique_fluide.html">Mesurer une pression - Loi de la statique des fluides (première générale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_terminale_condensateur_geometrie.html">Géométrie d’un condensateur (terminale générale)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_terminale_capteur_capacitif.html">Capteur capacitif (terminale générale)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../5_aller_plus_loin/index.html">Aller plus loin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Microcontroleurs & Sciences physiques</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Nouveaux programmes du lycée</a> &raquo;</li>
+        
+      <li>Mesurer la célérité d’un son (première générale)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/4_lycee/3_premiere_vitesse_son.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mesurer-la-celerite-d-un-son-premiere-generale">
+<h1>Mesurer la célérité d’un son (première générale)<a class="headerlink" href="#mesurer-la-celerite-d-un-son-premiere-generale" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="topic">
+<p class="topic-title first">Programme de première générale 2019 - Enseignement de spécialité.</p>
+<p>Exploiter la relation entre la durée de propagation, la distance parcourue par une perturbation et la célérité, notamment pour localiser une source d’onde. Déterminer, par exemple à l’aide d’un microcontrôleur ou d’un smartphone, une distance ou la célérité d’une onde.</p>
+</div>
+<div class="section" id="principe">
+<h2>Principe<a class="headerlink" href="#principe" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="module-hc-sr04">
+<h3>Module HC-SR04<a class="headerlink" href="#module-hc-sr04" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les modules du type  HC-SR04 sont des émetteurs-récepteurs ultrasonores fonctionnant par réflexion. Ils sont utilisés généralement dans des applications  comme télémètre.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/Ultrason_HC-SR04-Photo.png"><img alt="Montage ultrason - Arduino" src="../_images/Ultrason_HC-SR04-Photo.png" style="width: 204.39999999999998px; height: 113.39999999999999px;" /></a>
+<p class="caption"><span class="caption-text">Module HC-SR04</span></p>
+</div>
+</div>
+<div class="section" id="fonctionnement">
+<h3>Fonctionnement<a class="headerlink" href="#fonctionnement" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li>Le module est alimenté entre <code class="docutils literal notranslate"><span class="pre">GND</span></code> et <code class="docutils literal notranslate"><span class="pre">Vcc</span></code> (généralement 5 V ou 3,3 V sur certains modules).</li>
+<li>Le déclenchement d’une mesure (émission d’une salve) se fait par une brève impulsion (&gt; 10 µs) sur l’entrée <code class="docutils literal notranslate"><span class="pre">trig</span></code>.</li>
+<li>La durée que prend l’onde pour aller de l’émetteur au récepteur est celle de l’impulsion renvoyée sur la sortie <code class="docutils literal notranslate"><span class="pre">echo</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="chronogrammes">
+<h3>Chronogrammes<a class="headerlink" href="#chronogrammes" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/Ultrason_HC-SR04_Chrono.png"><img alt="Chronogrammes HC-SR04" src="../_images/Ultrason_HC-SR04_Chrono.png" style="width: 672.0px; height: 503.99999999999994px;" /></a>
+<p class="caption"><span class="caption-text">Mesures réalisées à l’oscilloscope sur un module HC-SR04 (5 V)</span></p>
+</div>
+<p>Dans cet exemple, le calcul de la célérité du son donne 352 m/s.</p>
+</div>
+</div>
+<div class="section" id="montage">
+<h2>Montage<a class="headerlink" href="#montage" title="Lien permanent vers ce titre">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/Ultrason_HC-SR04-Montage.png"><img alt="Montage ultrason - Arduino" class="align-center" src="../_images/Ultrason_HC-SR04-Montage.png" style="width: 380.5px; height: 222.5px;" /></a>
+</div>
+<div class="section" id="programme">
+<h2>Programme<a class="headerlink" href="#programme" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="code arduino highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Mesurer</span> <span class="n">vitesse</span> <span class="n">son</span>
+ <span class="o">*/</span>
+
+<span class="c1">#define pinTrig 8       // Trig sur broche 8</span>
+<span class="c1">#define pinEcho 9       // Echo sur broche 9</span>
+
+<span class="nb">float</span> <span class="n">distance</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>   <span class="o">//</span> <span class="n">Distance</span> <span class="n">en</span> <span class="n">module</span> <span class="n">et</span> <span class="n">réflecteur</span>
+<span class="n">long</span> <span class="n">dureeEcho</span><span class="p">;</span>         <span class="o">//</span> <span class="n">Durée</span> <span class="n">mesurée</span>
+<span class="nb">float</span> <span class="n">vitesse</span> <span class="p">;</span>         <span class="o">//</span> <span class="n">Vitesse</span> <span class="n">obtenue</span>
+
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">pinTrig</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>      <span class="o">//</span> <span class="n">Broche</span> <span class="n">Trig</span> <span class="n">en</span> <span class="n">sortie</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinEcho</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>    <span class="o">//</span> <span class="n">Sortie</span> <span class="n">Trig</span> <span class="n">à</span> <span class="n">l</span> <span class="n">état</span> <span class="n">bas</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">pinEcho</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span>       <span class="o">//</span> <span class="n">Broche</span> <span class="n">Echo</span> <span class="n">en</span> <span class="n">entrée</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>           <span class="o">//</span> <span class="n">Paramétrage</span> <span class="n">du</span> <span class="n">port</span> <span class="n">série</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinTrig</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>            <span class="o">//</span> <span class="n">Début</span> <span class="n">impulsion</span> <span class="n">de</span> <span class="n">declenchement</span>
+  <span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>                 <span class="o">//</span> <span class="n">Attendre</span> <span class="mi">10</span> <span class="n">microseconde</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinTrig</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>             <span class="o">//</span> <span class="n">Fin</span> <span class="n">impulsion</span> <span class="p">(</span><span class="n">Etat</span> <span class="n">bas</span><span class="p">)</span>
+  <span class="n">dureeEcho</span> <span class="o">=</span> <span class="n">pulseIn</span><span class="p">(</span><span class="n">pinEcho</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>     <span class="o">//</span> <span class="n">Mesure</span> <span class="n">de</span> <span class="n">la</span> <span class="n">durée</span> <span class="n">de</span> <span class="n">l</span> <span class="n">impulsion</span> <span class="n">sur</span> <span class="n">Echo</span>
+  <span class="n">vitesse</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">distance</span><span class="o">/</span><span class="n">dureeEcho</span> <span class="o">*</span> <span class="mf">1E6</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Calcul</span> <span class="n">de</span> <span class="n">la</span> <span class="n">vitesse</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Durée (s) = &quot;</span><span class="p">);</span>          <span class="o">//</span> <span class="n">Affichage</span> <span class="n">sur</span> <span class="n">port</span> <span class="n">série</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">dureeEcho</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Vitesse (m/s) = &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">vitesse</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>                           <span class="o">//</span> <span class="n">Attendre</span> <span class="mi">1</span><span class="n">s</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="a-retenir">
+<h2>A retenir<a class="headerlink" href="#a-retenir" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les modules du type HC-SR04 délivre une <strong>impulsion à l’état haut</strong> dont la durée est égale au temps que prend le son pour partir de l’émetteur puis revenir au récepteur.</p>
+<p>Dans le programme la fonction <code class="docutils literal notranslate"><span class="pre">pulseIn(pin,HIGH)</span></code> est chargée de la <strong>mesure de cette durée</strong>.</p>
+</div>
+<div class="section" id="aller-plus-loin">
+<h2>Aller plus loin<a class="headerlink" href="#aller-plus-loin" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour améliorer la précision, il est possible de réaliser plusieurs mesures et d’en faire une moyenne ou même de tracer un histogramme de ces mesures !</p>
+<div class="code arduino highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">Exporter</span> <span class="n">plusieurs</span> <span class="n">mesures</span> <span class="n">de</span> <span class="n">la</span> <span class="n">vitesse</span> <span class="n">du</span> <span class="n">son</span>
+ <span class="o">*</span> <span class="n">au</span> <span class="nb">format</span> <span class="n">CSV</span> <span class="n">pour</span> <span class="n">exploitation</span> <span class="n">par</span> <span class="n">tableur</span> <span class="n">ou</span>
+ <span class="o">*</span> <span class="n">logiciels</span> <span class="n">spécialisés</span> <span class="p">(</span><span class="n">Regressi</span><span class="p">,</span> <span class="n">Latis</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+ <span class="o">*/</span>
+
+<span class="c1">#define pinTrig 8       // Trig sur broche 8</span>
+<span class="c1">#define pinEcho 9       // Echo sur broche 9</span>
+
+<span class="nb">float</span> <span class="n">distance</span> <span class="o">=</span> <span class="mf">0.297</span><span class="p">;</span> <span class="o">//</span> <span class="n">Distance</span> <span class="n">en</span> <span class="n">module</span> <span class="n">et</span> <span class="n">réflecteur</span>
+<span class="n">long</span> <span class="n">dureeEcho</span><span class="p">;</span>         <span class="o">//</span> <span class="n">Durée</span> <span class="n">mesurée</span>
+<span class="nb">int</span> <span class="n">vitesse</span> <span class="p">;</span>           <span class="o">//</span> <span class="n">Vitesse</span> <span class="n">obtenue</span>
+<span class="nb">int</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">pinTrig</span><span class="p">,</span><span class="n">OUTPUT</span><span class="p">);</span>     <span class="o">//</span> <span class="n">Broche</span> <span class="n">Trig</span> <span class="n">en</span> <span class="n">sortie</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinEcho</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>   <span class="o">//</span> <span class="n">Sortie</span> <span class="n">Trig</span> <span class="n">à</span> <span class="n">l</span> <span class="n">état</span> <span class="n">bas</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">pinEcho</span><span class="p">,</span><span class="n">INPUT</span><span class="p">);</span>      <span class="o">//</span> <span class="n">Broche</span> <span class="n">Echo</span> <span class="n">en</span> <span class="n">entrée</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>          <span class="o">//</span> <span class="n">Paramétrage</span> <span class="n">du</span> <span class="n">port</span> <span class="n">série</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;n;v&quot;</span><span class="p">);</span>       <span class="o">//</span> <span class="n">Entête</span> <span class="n">du</span> <span class="n">fichier</span> <span class="n">CSV</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;=</span><span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinTrig</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>                 <span class="o">//</span> <span class="n">Début</span> <span class="n">impulsion</span> <span class="n">de</span> <span class="n">déclenchement</span>
+  <span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>                      <span class="o">//</span> <span class="n">Attendre</span> <span class="mi">10</span> <span class="n">microseconde</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">pinTrig</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>                  <span class="o">//</span> <span class="n">Fin</span> <span class="n">impulsion</span> <span class="p">(</span><span class="n">Etat</span> <span class="n">bas</span><span class="p">)</span>
+  <span class="n">dureeEcho</span> <span class="o">=</span> <span class="n">pulseIn</span><span class="p">(</span><span class="n">pinEcho</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span>          <span class="o">//</span> <span class="n">Mesure</span> <span class="n">de</span> <span class="n">la</span> <span class="n">durée</span> <span class="n">de</span> <span class="n">l</span> <span class="n">impulsion</span> <span class="n">sur</span> <span class="n">Echo</span>
+  <span class="n">vitesse</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">distance</span><span class="o">/</span><span class="n">dureeEcho</span><span class="o">*</span><span class="mf">1E6</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Calcul</span> <span class="n">de</span> <span class="n">la</span> <span class="n">vitesse</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>                            <span class="o">//</span> <span class="n">Début</span> <span class="n">d</span> <span class="n">écriture</span> <span class="n">d</span> <span class="n">une</span> <span class="n">ligne</span> <span class="n">de</span> <span class="n">mesure</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">vitesse</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>                                 <span class="o">//</span> <span class="n">Attendre</span> <span class="mi">1</span><span class="n">s</span>
+  <span class="n">n</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/ultrason_histogramme_moniteur_serie.png"><img alt="" src="../_images/ultrason_histogramme_moniteur_serie.png" style="width: 637.6999999999999px; height: 296.09999999999997px;" /></a>
+<p class="caption"><span class="caption-text">Mesures au format CSV obtenues dans le moniteur série</span></p>
+</div>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/ultrason_histogramme.png"><img alt="" src="../_images/ultrason_histogramme.png" style="width: 448.0px; height: 336.0px;" /></a>
+<p class="caption"><span class="caption-text">Histogramme des mesures tracé à l’aide du module <code class="docutils literal notranslate"><span class="pre">matplolib</span></code> de Python</span></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="4_premiere_pression_loi_mariotte.html" class="btn btn-neutral float-right" title="Mesurer une pression - Loi de Mariotte (première générale)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="2_seconde_emettre_son.html" class="btn btn-neutral float-left" title="Émission d’un son (seconde générale)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, THERINCOURT David
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

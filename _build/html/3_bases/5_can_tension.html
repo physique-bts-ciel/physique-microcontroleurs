@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="fr" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="fr" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mesurer une tension (CAN) &mdash; Documentation Microcontroleurs &amp; Sciences physiques </title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Nouveaux programmes du lycée" href="../4_lycee/index.html" />
+    <link rel="prev" title="Afficheur LCD" href="4_afficheur.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Microcontroleurs & Sciences physiques
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_introduction/introduction.html">Introduction aux microcontrôleurs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_arduino/index.html">Les microcontrôleurs Arduino</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Les bases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_output_led.html">Allumer une LED (sorties numériques)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_pwm_led.html">Modifier l’intensité lumineuse d’une LED (sorties PWM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_communication_serie.html">Communication avec un ordinateur (port série)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_afficheur.html">Afficheur LCD</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mesurer une tension (CAN)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#principe">Principe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#montage">Montage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#programme">Programme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-retenir">A retenir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#applications">Applications</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../4_lycee/index.html">Nouveaux programmes du lycée</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_aller_plus_loin/index.html">Aller plus loin</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Microcontroleurs & Sciences physiques</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Les bases</a> &raquo;</li>
+        
+      <li>Mesurer une tension (CAN)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/3_bases/5_can_tension.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mesurer-une-tension-can">
+<h1>Mesurer une tension (CAN)<a class="headerlink" href="#mesurer-une-tension-can" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="principe">
+<h2>Principe<a class="headerlink" href="#principe" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La mesure d’une tension par un microcontrôleur est réalisée en interne par un <strong>convertisseur analogique-numérique</strong>.</p>
+<p>Ce type de conversion est importante en sciences physique. Elle permet par exemple d’obtenir la mesure d’une grandeur physique provenant d’un <strong>capteur</strong>.</p>
+<p>Arduino UNO dispose de <strong>6 entrées analogiques</strong> disponibles sur les broches A0 à A5. Par défaut, la tension en entrée doit-être comprise entre 0 V et 5 V (Vref). La résolution de la conversion est de 10 bits.</p>
+<a class="reference internal image-reference" href="../_images/05_arduino_entrees_analogiques.png"><img alt="" class="align-center" src="../_images/05_arduino_entrees_analogiques.png" style="width: 350.0px; height: 280.0px;" /></a>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">Le tension appliquée sur les entrées analogiques doivent être <strong>strictement comprise entre 0 V et 5 V</strong> sous peine de détruire le microcontrôleur.</p>
+</div>
+</div>
+<div class="section" id="montage">
+<h2>Montage<a class="headerlink" href="#montage" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un pont diviseur de tension branché entre la masse (<code class="docutils literal notranslate"><span class="pre">GND</span></code>) et la tension d’alimentation (<code class="docutils literal notranslate"><span class="pre">5V</span></code>) délivre une tension réglable sur l’entrée <code class="docutils literal notranslate"><span class="pre">A0</span></code>.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/05_arduino_uno_can_potentiometre.png"><img alt="" src="../_images/05_arduino_uno_can_potentiometre.png" style="width: 333.5px; height: 334.5px;" /></a>
+<p class="caption"><span class="caption-text">Montage potentiométrique</span></p>
+</div>
+</div>
+<div class="section" id="programme">
+<h2>Programme<a class="headerlink" href="#programme" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le programme suivant lit la tension sur l’entrée <code class="docutils literal notranslate"><span class="pre">A0</span></code> et affiche sa valeur dans le moniteur série du logiciel Arduino.</p>
+<div class="code arduino highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+  <span class="n">Lecture</span> <span class="n">de</span> <span class="n">l</span><span class="s1">&#39;entrée analogique A0 sur le port série.</span>
+<span class="o">*/</span>
+
+<span class="nb">int</span> <span class="n">valAnalog</span><span class="p">;</span>    <span class="o">//</span> <span class="n">Entier</span> <span class="n">compris</span> <span class="n">entre</span> <span class="mi">0</span> <span class="n">et</span> <span class="mi">1023</span> <span class="p">(</span><span class="mi">10</span><span class="n">bits</span><span class="p">)</span>
+<span class="nb">float</span> <span class="n">tension</span><span class="p">;</span>    <span class="o">//</span> <span class="n">La</span> <span class="n">tension</span> <span class="n">calculée</span> <span class="n">est</span> <span class="n">un</span> <span class="n">nombre</span> <span class="n">à</span> <span class="n">virgule</span>
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>   <span class="o">//</span> <span class="n">Paramétrage</span> <span class="n">port</span> <span class="n">série</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">valAnalog</span> <span class="o">=</span> <span class="n">analogRead</span><span class="p">(</span><span class="n">A0</span><span class="p">);</span>     <span class="o">//</span> <span class="n">Lecture</span> <span class="n">valeur</span> <span class="n">sur</span> <span class="n">A0</span>
+  <span class="n">tension</span> <span class="o">=</span> <span class="n">valAnalog</span><span class="o">*</span><span class="mf">5.0</span><span class="o">/</span><span class="mi">1023</span><span class="p">;</span>   <span class="o">//</span> <span class="n">Calcul</span> <span class="n">de</span> <span class="n">la</span> <span class="n">tension</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Valeur A0 = &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">valeurA0</span><span class="p">);</span>       <span class="o">//</span> <span class="n">Affichage</span> <span class="n">valeur</span> <span class="n">A0</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Tension = &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">tension</span><span class="p">);</span>        <span class="o">//</span> <span class="n">Affichage</span> <span class="n">de</span> <span class="n">la</span> <span class="n">tension</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>                    <span class="o">//</span> <span class="n">temporisation</span> <span class="n">de</span> <span class="mi">1</span> <span class="n">s</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>La fonction <code class="docutils literal notranslate"><span class="pre">analogRead(A0)</span></code> retourne un entier sur 10 bits compris entre 0 (pour 0V) et 1023 (pour 5V).</li>
+<li>L’expression <code class="docutils literal notranslate"><span class="pre">valAnalog*5.0/1023</span></code> calcule la valeur de la tension en volt.</li>
+</ul>
+</div>
+<div class="section" id="a-retenir">
+<h2>A retenir<a class="headerlink" href="#a-retenir" title="Lien permanent vers ce titre">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Instruction</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">analogRead(A0)</span></code></td>
+<td>Retourne un entier entre 0 et 1023 proportionnel à la tension appliquée</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li>Interface avec un circuit comportant un capteur.</li>
+<li>Mesure d’une position (potentiomètre).</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../4_lycee/index.html" class="btn btn-neutral float-right" title="Nouveaux programmes du lycée" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="4_afficheur.html" class="btn btn-neutral float-left" title="Afficheur LCD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, THERINCOURT David
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
