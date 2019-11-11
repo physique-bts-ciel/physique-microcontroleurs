@@ -33,6 +33,13 @@ Modification du module
 Tel qu'il est vendu, ce module n'a peu d'intérêt en sciences physiques car les signaux électriques sur l'émetteur et le récepteur ne sont pas accessibles.
 Il est possible de résoudre ce problème en y soudant deux connecteurs supplémentaires (voir photo ci-dessous) et de visualiser ces deux signaux à l'oscilloscope ou avec une interface d'acquisition.
 
+.. image:: Images/Ultrason_HC-SR04-modifie-soudures.png
+   :width: 700
+   :height: 500
+   :scale: 50 %
+   :alt:
+   :align: center
+
 Mesure de la célérité du son
 ----------------------------
 
