@@ -84,16 +84,13 @@ Programme
 .. code-block:: arduino
 
    /*
-    * Mesurer vitesse son
+    * Pilotage du module ultrason avec mesure de durée
     */
 
    #define pinTrig 8       // Trig sur broche 8
    #define pinEcho 9       // Echo sur broche 9
 
-   float distance = 0.3;   // Distance en module et réflecteur
-   long dureeEcho;         // Durée mesurée
-   float vitesse ;         // Vitesse obtenue
-
+   long dureeEcho;         // Durée de l'Echo
 
    void setup() {
      pinMode(pinTrig,OUTPUT);      // Broche Trig en sortie
@@ -107,11 +104,8 @@ Programme
      delayMicroseconds(10);                 // Attendre 10 microseconde
      digitalWrite(pinTrig,LOW);             // Fin impulsion (Etat bas)
      dureeEcho = pulseIn(pinEcho,HIGH);     // Mesure de la durée de l'impulsion sur Echo
-     vitesse = 2*distance/dureeEcho * 1E6;  // Calcul de la vitesse
-     Serial.print("Durée (s) = ");          // Affichage sur port série
+     Serial.print("Durée (µs) = ");          // Affichage sur port série
      Serial.println(dureeEcho);
-     Serial.print("Vitesse (m/s) = ");
-     Serial.println(vitesse);
      delay(1000);                           // Attendre 1s
    }
 
@@ -119,6 +113,8 @@ Programme
 
 Résultats
 ~~~~~~~~~
+
+La mesure de durée est donnée par le microcontrôleur et/ou mesurée sur les chronogrammes.
 
 .. figure:: Images/Ultrasons_Latis.png
    :width: 932
@@ -178,41 +174,90 @@ Montage
 Programme
 ~~~~~~~~~
 
-Le programme est le même, seule le calcul change !
+Le programme est le même. Il suffit juste ajouter le calcul de la distance.
+
+Avec le moniteur série :
 
 .. code-block:: arduino
 
    /*
-    * Application : télémétre
-    */
+   * Application : télémétre
+   */
 
    #define pinTrig 8       // Trig sur broche 8
    #define pinEcho 9       // Echo sur broche 9
 
    float distance;         // Distance en module et réflecteur
    long dureeEcho;         // Durée mesurée
-   float vitesse = 340 ;         // Vitesse obtenue
+   float vitesse = 345 ;   // Vitesse obtenue
 
 
    void setup() {
-     pinMode(pinTrig,OUTPUT);      // Broche Trig en sortie
-     digitalWrite(pinEcho,LOW);    // Sortie Trig à l état bas
-     pinMode(pinEcho,INPUT);       // Broche Echo en entrée
-     Serial.begin(9600);           // Paramétrage du port série
+   pinMode(pinTrig,OUTPUT);      // Broche Trig en sortie
+   digitalWrite(pinEcho,LOW);    // Sortie Trig à l état bas
+   pinMode(pinEcho,INPUT);       // Broche Echo en entrée
+   Serial.begin(9600);           // Paramétrage du port série
    }
 
    void loop() {
-     digitalWrite(pinTrig,HIGH);                   // Début impulsion de déclenchement
-     delayMicroseconds(10);                        // Attendre 10 microseconde
-     digitalWrite(pinTrig,LOW);                    // Fin impulsion (Etat bas)
-     dureeEcho = pulseIn(pinEcho,HIGH);            // Mesure de la durée de l'impulsion sur Echo
-     distance = (vitesse * dureeEcho * 1E6) / 2;   // Calcul de la distance
-     Serial.print("Durée (s) = ");                 // Affichage sur port série
-     Serial.println(dureeEcho);
-     Serial.print("Distance (m) = ");
-     Serial.println(distance);
-     delay(1000);                                   // Attendre 1s
+   digitalWrite(pinTrig,HIGH);                   // Début impulsion de déclenchement
+   delayMicroseconds(10);                        // Attendre 10 microseconde
+   digitalWrite(pinTrig,LOW);                    // Fin impulsion (Etat bas)
+   dureeEcho = pulseIn(pinEcho,HIGH);            // Mesure de la durée de l'impulsion sur Echo
+   distance = 100*(vitesse*dureeEcho*1E-6)/2;    // Calcul de la distance
+   Serial.print("Durée (s) = ");                 // Affichage sur port série
+   Serial.println(dureeEcho);
+   Serial.print("Distance (cm) = ");
+   Serial.println(distance);
+   delay(1000);                                   // Attendre 1s
    }
+
+Avec un écran LCD 2x16 :
+
+.. code-block:: arduino
+
+    /*
+     * Application : télémétre sur écran LCD 2x16
+     */
+   #include <LiquidCrystal.h>        // Importation de la librairie LiquidCrystal
+   #define pinTrig 8       // Trig sur broche 8
+   #define pinEcho 9       // Echo sur broche 9
+
+   LiquidCrystal lcd(12, 11, 5, 4, 3, 2);  // Brochage de l'afficheur
+
+   float distance;         // Distance en module et réflecteur
+   long dureeEcho;         // Durée mesurée
+   float vitesse = 345 ;   // Vitesse obtenue
+
+
+   void setup() {
+    pinMode(pinTrig,OUTPUT);      // Broche Trig en sortie
+    digitalWrite(pinEcho,LOW);    // Sortie Trig à l état bas
+    pinMode(pinEcho,INPUT);       // Broche Echo en entrée
+    lcd.begin(16, 2);               // fixe le nombre de colonnes et de lignes de l afficheur
+   }
+
+   void loop() {
+    digitalWrite(pinTrig,HIGH);                   // Début impulsion de déclenchement
+    delayMicroseconds(10);                        // Attendre 10 microseconde
+    digitalWrite(pinTrig,LOW);                    // Fin impulsion (Etat bas)
+    dureeEcho = pulseIn(pinEcho,HIGH);            // Mesure de la durée de l'impulsion sur Echo
+    distance = (vitesse*dureeEcho*1E-6)/2;    // Calcul de la distance
+    lcd.setCursor(0,0);                           // place le curseur au début de la ligne 0
+    lcd.print("Distance en m");                  // Affiche la légende
+    lcd.setCursor(0,1);                           // place le curseur au début de la ligne 1
+    lcd.print(distance);                          // Affiche la valeur de la distance
+    delay(1000);                                  // Attendre 1s
+   }
+
+.. figure:: Images/Ultrason_HC-SR04_Educaduino_LCD.png
+   :width: 850
+   :height: 550
+   :scale: 50 %
+   :alt: Montage ultrason - Arduino
+   :align: center
+
+   Télémètre sur Educaduino-Lab LCD
 
 A retenir
 ---------
