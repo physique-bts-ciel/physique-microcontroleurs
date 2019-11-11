@@ -10,7 +10,7 @@ Mesurer la célérité d'un son (première générale)
 Présentation du module HC-SR04
 ------------------------------
 
-Les modules du type  HC-SR04 sont des émetteurs-récepteurs ultrasonores fonctionnant par réflexion. Ils sont utilisés généralement dans des applications  comme télémètre.
+Les modules du type  HC-SR04 sont des émetteurs-récepteurs ultrasonores fonctionnant par réflexion. Ils sont utilisés généralement dans des applications comme télémètre (< 5 m).
 
 .. figure:: Images/Ultrason_HC-SR04-Photo.png
    :width: 292
@@ -42,13 +42,14 @@ Principe
 Montage
 ~~~~~~~
 
-
-.. image:: Images/Ultrason_HC-SR04-Montage.png
-   :width: 761
-   :height: 445
+.. figure:: Images/Ultrason_HC-SR04-Montage-Oscillo.png
+   :width: 837
+   :height: 434
    :scale: 50 %
    :alt: Montage ultrason - Arduino
    :align: center
+
+   Montage avec oscilloscope ou interface d'acquisition
 
 .. figure:: Images/Ultrason_HC-SR04-Module_arduino_sysam.png
    :width: 900
@@ -73,7 +74,7 @@ Montage
 Programme
 ~~~~~~~~~
 
-.. code:: arduino
+.. code-block:: arduino
 
    /*
     * Mesurer vitesse son
@@ -113,8 +114,8 @@ Résultats
 ~~~~~~~~~
 
 .. figure:: Images/Ultrasons_Latis.png
-   :width: 934
-   :height: 900
+   :width: 932
+   :height: 857
    :scale: 50 %
    :alt:
    :align: center
@@ -133,9 +134,13 @@ Résultats
 
 .. note::
 
-   La fonction ``+Width`` de l'oscilloscope mesure en temps réel la durée de l'impulsion sur la broche Echo.
+   La fonction ``+Width`` de l'oscilloscope mesure en temps réel la durée de l'impulsion sur la broche ``Echo``.
 
+Par exemple, pour une distance de 30 cm, la mesure de la célérité du son est :
 
+.. math::
+
+   c = \dfrac{2 \times d}{\Delta t} = \dfrac{2 \times 300}{1,73} \approx 347\,m\cdot s^{-1}
 
 Application : réalisation d'un télémètre
 ----------------------------------------
@@ -143,8 +148,64 @@ Application : réalisation d'un télémètre
 Principe
 ~~~~~~~~
 
+Connaissant la célérité du son, la distance par rapport à un obstacle est calculée par le microcontrôleur à l'aide de la relation suivante :
+
+.. math::
+
+   d = \dfrac{c \times \Delta t}{2}
+
+L'affichage de la distance peut se faire sur un afficheur ou dans le moniteur série de l'ordinadeur.
+
+Montage
+~~~~~~~
+
+.. figure:: Images/Ultrason_HC-SR04-Montage.png
+   :width: 720
+   :height: 429
+   :scale: 50 %
+   :alt: Montage ultrason - Arduino
+   :align: center
+
+   Montage télémètre
+
 Programme
 ~~~~~~~~~
+
+Le programme est le même, seule le calcul change !
+
+.. code-block:: arduino
+
+   /*
+    * Application : télémétre
+    */
+
+   #define pinTrig 8       // Trig sur broche 8
+   #define pinEcho 9       // Echo sur broche 9
+
+   float distance;         // Distance en module et réflecteur
+   long dureeEcho;         // Durée mesurée
+   float vitesse = 340 ;         // Vitesse obtenue
+
+
+   void setup() {
+     pinMode(pinTrig,OUTPUT);      // Broche Trig en sortie
+     digitalWrite(pinEcho,LOW);    // Sortie Trig à l état bas
+     pinMode(pinEcho,INPUT);       // Broche Echo en entrée
+     Serial.begin(9600);           // Paramétrage du port série
+   }
+
+   void loop() {
+     digitalWrite(pinTrig,HIGH);                   // Début impulsion de déclenchement
+     delayMicroseconds(10);                        // Attendre 10 microseconde
+     digitalWrite(pinTrig,LOW);                    // Fin impulsion (Etat bas)
+     dureeEcho = pulseIn(pinEcho,HIGH);            // Mesure de la durée de l'impulsion sur Echo
+     distance = (vitesse * dureeEcho * 1E6) / 2;   // Calcul de la distance
+     Serial.print("Durée (s) = ");                 // Affichage sur port série
+     Serial.println(dureeEcho);
+     Serial.print("Distance (m) = ");
+     Serial.println(distance);
+     delay(1000);                                   // Attendre 1s
+   }
 
 A retenir
 ---------
