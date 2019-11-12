@@ -219,7 +219,7 @@ latex_elements = {
     \Large \textbf{{David THERINCOURT}}
     \vspace*{0mm}
     \\
-    \small 31 octobre 2019
+    \small \date
     %% \vfill adds at the bottom
     \vfill
     \small \textit{Plus d'informations sur }{\href{https://physique.david-therincourt.fr/microcontroleurs/}{physique.david-therincourt.fr/microcontroleurs/}}
