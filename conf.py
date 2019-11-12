@@ -105,11 +105,11 @@ html_static_path = ['_static']
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Microcontroleurs'
 
-html_context = {
-"display_github": False, # Add 'Edit on Github' link instead of 'View page source'
-"last_updated": True,
-"commit": False,
-}
+#html_context = {
+#"display_github": False, # Add 'Edit on Github' link instead of 'View page source'
+#"last_updated": True,
+#"commit": False,
+#}
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -214,15 +214,17 @@ latex_elements = {
     \centering
     \includegraphics[scale=0.4]{CTN_Montage.png}
     \end{figure}
-    \vspace{0mm}
+    \vspace{10mm}
     \\
     \Large \textbf{{David THERINCOURT}}
     \vspace*{0mm}
     \\
-    \small \date
+    \large \textbf{{Lycée Roland Garros - Académie de la Réunion}}
+    \\
+    \today
     %% \vfill adds at the bottom
     \vfill
-    \small \textit{Plus d'informations sur }{\href{https://physique.david-therincourt.fr/microcontroleurs/}{physique.david-therincourt.fr/microcontroleurs/}}
+    \small \textit{Plus d'informations sur }{\href{https://physique-microcontroleurs.readthedocs.io/}{https://physique-microcontroleurs.readthedocs.io/}}
     \end{titlepage}
     \clearpage
     \pagenumbering{roman}
