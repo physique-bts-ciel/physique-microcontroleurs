@@ -89,7 +89,7 @@ Applications
 * Mesure d'une position (potentiomètre).
 
 Aller plus loin : contrôler l'intensité lumineuse d'une LED
---------------------------------------------------------
+-----------------------------------------------------------
 
 En combinant le programme précédant avec celui sur la génération d'une tension PWM, il est possible de régler à l'aide d'un potentiomètre l'intensité lumineuse d'une LED.
 
