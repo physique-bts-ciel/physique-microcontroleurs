@@ -51,7 +51,7 @@ Programme
    #define LED 11           // LED connectée à la broche 11
 
    void setup() {
-     pinMode(LED,OUTPUT)    // Configuration de la broche LED en sortie
+     pinMode(LED,OUTPUT);   // Configuration de la broche LED en sortie
    }
 
    void loop() {

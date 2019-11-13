@@ -42,7 +42,7 @@ Méthode 1 : construire le signal carré
     *  Générer un son simple
     */
 
-   #define brocheHP 44   
+   #define brocheHP 8
                             
    float frequence=440;                             
    float periode=1/frequence;
@@ -75,7 +75,7 @@ Méthode 2 : avec la fonction ``tone()``
    #define La3 440
    #define Si3 494
 
-   #define brocheHP 44
+   #define brocheHP 8
 
    void setup() {
      pinMode(brocheHP,OUTPUT);
