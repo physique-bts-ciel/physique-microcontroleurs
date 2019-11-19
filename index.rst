@@ -19,5 +19,3 @@ Cette document a pour objectif d'apporter aux professeurs de physique-chimie les
    4_lycee/index
    5_aller_plus_loin/index
 
-
-

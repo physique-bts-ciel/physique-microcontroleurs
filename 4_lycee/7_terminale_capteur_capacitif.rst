@@ -7,11 +7,28 @@ Capteur capacitif (terminale générale)
 
 Principe
 --------
+Soit le circuit RC série suivant :
 
-Sur la réponse d'un circuit RC à un échelon de tension de 0 V à :math:`V_{cc}`, le temps caractéristique :math:`\tau` est la durée que prend cette réponse pour atteindre 63% de sa valeur finale :math:`V_{cc}`.
+.. image:: Images/RC_Montage_1.png
+   :width: 300
+   :height: 200
+   :scale: 100 %
+   :alt:
+   :align: center
 
-Il suffit donc de mesurer, à l'aide du timer du microcontrôleur, la durée que prend la tension aux bornes du condensateur pour passer de :math:`0` à :math:`0,63 \times V_{cc}`.
+.. image:: Images/RC_Chronogrammes_1.png
+   :width: 600
+   :height: 550
+   :scale: 100 %
+   :alt:
+   :align: center
 
+Lors de la charge du condensateur C à travers la résistance R sous tension constante :math:`V_{cc}`,
+le **temps caractéristique** (ou constante de temps) :math:`\tau` est la durée que prend
+la tension :math:`u_{C}` pour atteindre 63% de sa valeur finale :math:`V_{cc}`.
+
+
+Avec un microcontrôleur, il est assez facile de mesurer ce temps caractéristique par une **mesure de durée** jusqu'à la **détection du seuil de 63%** de la valeur finale de la tension du condensateur.
 
 Montage
 -------
@@ -46,7 +63,7 @@ Programme
    int N = 0;
    unsigned long t0;
    unsigned long t1;
-   unsigned long Dt;
+   unsigned long tau;
    float C;
 
 
@@ -66,11 +83,11 @@ Programme
      }
 
      t1 = micros();             // Mesure instant où seuil atteint
-     Dt = t1 - t0;              // Calcul de tau
-
-     Serial.print(Dt);          // Début affichage
-     Serial.println(" µs");
      digitalWrite(pinE,LOW);    // Début décharge condensateur
+     tau = t1 - t0;              // Calcul de tau
+
+     Serial.print(tau);          // Début affichage
+     Serial.println(" µs");
    }
 
    void loop() {
@@ -80,11 +97,26 @@ Programme
 A retenir
 ---------
 
-La fonction ``micros()`` renvoie la durée en µs (< 70 min) depuis que la carte Arduino a été mise sous tension.
-La précision est de 4 µs !
+* La fonction ``micros()`` renvoie la durée en µs (< 70 min) depuis que la carte Arduino a été mise sous tension. La précision est de 4 µs !
+
+* La boucle ``while`` (tant que) associée à la fonction ``analogRead()`` détecte le seuil de la tension du condensateur.
 
 Application : mesure d'une capacité
 -----------------------------------
+
+Sachant que le temps caractéristique est défini par la relation :
+
+.. math::
+
+   \tau = R \cdot C
+
+Le calcul de la capacité C du condensateur est :
+
+.. math::
+
+   C = \dfrac{\tau}{R}
+
+If suffit donc d'ajouter cette relation dans le code précédent !
 
 .. code-block:: arduino
 
@@ -94,10 +126,11 @@ Application : mesure d'une capacité
 
    #define pinE 8
 
+   float R = 1000;       // Resistance en kOhm
    int N = 0;
    unsigned long t0;
    unsigned long t1;
-   unsigned long Dt;
+   unsigned long tau;
    float C;
 
 
@@ -115,14 +148,14 @@ Application : mesure d'une capacité
      while (N<646) {            // Boucle tant que tension inférieure à seuil (0,632*1023=646)
        N=analogRead(A0);        // Lecture tension condensateur
      }
-
      t1 = micros();             // Mesure instant où seuil atteint
-     Dt = t1 - t0;              // Calcul de tau
-     C = Dt/1000.0;             // Calcul de C connaissant R
+     digitalWrite(pinE,LOW);    // Début décharge condensateur
+
+     tau = t1 - t0;             // Calcul de tau
+     C = tau/R;                 // Calcul de C en nF
 
      Serial.print(C);           // Début affichage
      Serial.println(" nF");     // Fin affichage
-     digitalWrite(pinE,LOW);    // Début décharge condensateur
    }
 
    void loop() {
