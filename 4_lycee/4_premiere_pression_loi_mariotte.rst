@@ -33,7 +33,11 @@ La mesure de pression s'effectue avec un capteur de pression absolue du type MPX
 Montage
 -------
 
-Le montage est composé d'une carte Educaduino Lab, d'un capteur de pression Educaduino (20 kPa à 400 kPa) et d'une seringue.
+Le montage est composé d'une carte Educaduino Lab, d'un capteur de pression Educaduino (20 kPa à 400 kPa) et d'une seringue. L'expression de la pression (en kPa) en fonction de la tension délivrée par le cateur est :
+
+.. math::
+
+   P = 76 \times U + 20
 
 .. image:: Images/pression_mariotte_montage_educaduino.JPG
    :width: 800
