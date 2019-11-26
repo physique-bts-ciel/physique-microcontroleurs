@@ -1,5 +1,6 @@
 .. |kohm| replace:: :math:`{k\Omega}`
 
+=========================================
 Capteur résistif - CTN (seconde générale)
 =========================================
 
@@ -12,7 +13,7 @@ Capteur résistif - CTN (seconde générale)
 
 
 Principe
---------
+========
 
 Un capteur résistif est un composant électronique dont la résistance varie en fonction de la grandeur physique à mesurer. 
 
@@ -27,6 +28,8 @@ Par exemple, une CTN est un **capteur résistif  à coefficient de température 
    :align: center
    
    Courbe d'étalonnage d'une CTN 10k 
+
+Le fichier au format CSV contenant les mesures précédentes est téléchargeable ici :download:`data_ctn.txt <files/data_ctn.txt>`.
 
 .. note::
 
@@ -47,6 +50,24 @@ L'expression de la tension :math:`u` est donnée par la relation suivante :
 
    {u = \dfrac{R}{R_0+R} \times V_{cc}}
 
+Montage
+=======
+
+.. image:: Images/CTN_Montage.png
+   :width: 634
+   :height: 450
+   :scale: 50 %
+   :alt:
+   :align: center
+
+La tension :math:`u` est appliquée sur l'entrée analogique ``A0`` de l'Arduino.
+
+Première méthode : linéarisation
+================================
+
+Principe
+--------
+
 En choisissant la résistance :math:`R_0=10\,k\Omega` (valeur de la résistance caractéristique de la CTN), l'évolution de la tension obtenue en fonction de la température est **partiellement linéarisée**.
 
 .. figure:: Images/CTN_Caracteristique_Diviseur_tension.png
@@ -63,19 +84,6 @@ Entre 0 et 40°C, il est donc possible de calculer la température à partir de 
 .. math::
 
    T = \dfrac{u-b}{a}
-
-
-
-
-Montage
--------
-
-.. image:: Images/CTN_Montage.png
-   :width: 634
-   :height: 450
-   :scale: 50 %
-   :alt: 
-   :align: center
 
 Programme
 ---------
@@ -107,16 +115,13 @@ Programme
      delay(1000);                       // Temporisation d'une seconde
    }
    
-A retenir
----------
 
-Placer un **capteur résistif** (température, pression, lumière, ...) dans un **pont diviseur de tension** reste une solution simple d'interfacage avec un microcontrôleur.
 
-Allez plus loin
----------------
+Deuxième méthode : à partir de la mesure de la résistance
+=========================================================
 
-Mesurer la résistance de la CTN
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Comment mesurer la résistance de la CTN ?
+-----------------------------------------
 
 Dans le pont diviseur de tension, la résistance de la CTN s'exprime par la relation suivante :
 
@@ -150,8 +155,8 @@ Dans le pont diviseur de tension, la résistance de la CTN s'exprime par la rela
       delay(1000);                  // Temporisation de 1s
    }
 
-Mesure de la température avec la relation de Steinhart-Hart
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Calculer la température à partir de la relation de Steinhart-Hart
+-----------------------------------------------------------------
 
 Sur une grande plage de variation , la relation entre la température (en K) et la résistance de la CTN est :
 
@@ -164,7 +169,8 @@ ou peuvent se déterminer expérimentalement à partir de trois points de mesure
 
 .. note::
 
-   Un programme Python pour déterminer ces trois coefficients A, B et C est disponible sur `Wikipédia <https://fr.wikipedia.org/wiki/Relation_de_Steinhart-Hart>`_.
+   Un programme Python pour déterminer ces trois coefficients A, B et C est disponible sur `Wikipédia <https://fr.wikipedia.org/wiki/Relation_de_Steinhart-Hart>`_ et est téléchargeable ici :
+   :download:`steinhart-hart.py <files/steinhart-hart.py>`
 
 .. code-block:: arduino
 
@@ -202,7 +208,7 @@ ou peuvent se déterminer expérimentalement à partir de trois points de mesure
    }
 
 Simplification de relation de Steinhart-Hart
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------
 
 Sur une plage de variation plus réduite de la température, la relation de Steinhart-Hart permet d'écrire :
 
@@ -228,7 +234,10 @@ La détermination de la température (en K) s'effectue à l'aide de la relation 
    \dfrac{1}{T} = \dfrac{1}{\beta}\times\ln(\dfrac{R}{R_0})+\dfrac{1}{T_0}
 
 
+A retenir
+=========
 
+Placer un **capteur résistif** (température, pression, lumière, ...) dans un **pont diviseur de tension** reste une solution simple d'interfacage avec un microcontrôleur.
 
 
 
