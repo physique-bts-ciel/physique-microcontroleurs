@@ -91,25 +91,3 @@ Applications
    * Commande d'un actionneur (LED, relais, ...) en tout ou rien.
    * Communication numérique.
 
-Avec Python et Nanpy
---------------------
-
-.. code:: python
-
-   from nanpy import ArduinoApi           # Librairie du gestion des carte Arduino
-   from nanpy import SerialManager        # Librairie de gestion du port série
-   from time import sleep                 # Importation fonction sleep()
-
-   port = SerialManager()                 # Déclaration du port série
-   uno = ArduinoApi(connection=port)      # Déclaration de la carte Arduino Uno
-
-   pinLed = 11                            # N° de broche où la Led est branchée
-   uno.pinMode(pinLed,uno.OUTPUT)         # Broche Led en sortie
-
-   for i in range(100):                   # Boucle : répéter 100 fois
-       uno.digitalWrite(pinLed,1)         # Led allumée
-       sleep(1)                           # Attendre 1 s
-       uno.digitalWrite(pinLed,0)         # Led eteinte
-       sleep(1)                           # Attendre 1 s
-
-
