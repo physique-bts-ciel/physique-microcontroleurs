@@ -14,7 +14,7 @@ Cette document a pour objectif d'apporter aux professeurs de physique-chimie les
    :maxdepth: 2
 
    1_introduction/introduction
-   2_arduino/index
+   2_microcontroleurs/index
    3_bases/index
    4_lycee/index
    5_aller_plus_loin/index
