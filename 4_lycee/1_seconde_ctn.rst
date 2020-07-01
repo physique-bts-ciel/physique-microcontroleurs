@@ -18,7 +18,7 @@ Principe
 Un capteur résistif est un composant électronique dont la résistance varie en fonction de la grandeur physique à mesurer.
 
 Cas d'une CTN
-=============
+-------------
 
 Une CTN est un **capteur résistif  à coefficient de température négatif** dont l'évolution de la résistance en fonction de la température est donnée par la figure suivante :
 
@@ -35,7 +35,7 @@ Une CTN est un **capteur résistif  à coefficient de température négatif** do
 
 .. note::
 
-   Pour 25°C la résistance mesurée prend la valeur particulère de 10 |kohm| !
+   Pour 25°C la résistance mesurée prend la valeur particulière de 10 |kohm| !
 
 Relation de Steinhart-Hart
 --------------------------
@@ -69,7 +69,7 @@ Sur une plage de variation plus réduite de la température, la relation de Stei
 
 * :math:`{\beta}` (en K).
 
-Ces coefficients sont généralement donnés par le constructuer ou peuvent être déterminés par une modélisation de la caractéristique.
+Ces coefficients sont généralement donnés par le constructeur ou peuvent être déterminés par une modélisation de la caractéristique.
 
 .. figure:: Images/CTN_Caracteristique_R(T)_modele.png
    :width: 811
@@ -85,13 +85,13 @@ Le calcul de la température (en K) s'effectue à l'aide de la relation suivante
    \dfrac{1}{T} = \dfrac{1}{\beta}\times\ln(\dfrac{R}{R_0})+\dfrac{1}{T_0}
 
 
-Mesure de la résistance du capteur résistif
-===========================================
+Mesure de la résistance d'un capteur résistif
+=============================================
 
 La plupart des modules comportant un capteur résistif utilise un pont diviseur de tension pour la mesure de la résistance du capteur.
 
 Montage 1 : capteur connecté à la masse
------------------------------------
+---------------------------------------
 
 Il s'agit du montage le plus souvent rencontré.
 
@@ -104,9 +104,9 @@ Il s'agit du montage le plus souvent rencontré.
 
 
 Montage 2 : capteur connecté à Vcc
-------------------------------
+----------------------------------
 
-C'est le montage utilisé par les capteurs Plug'uino
+C'est le montage utilisé par les capteurs Plug'uino.
 
 .. image:: Images/ctn_module_resistif_2.png
    :width: 700
@@ -126,17 +126,35 @@ Cas particulier des capteurs résistifs Educaduino
    :alt:
    :align: center
 
-En plus de la mesure de la tension du capteur, une mesure du courant est aussi réalisée à partir de la tension aux bornes de la résistance Ro par l'intermédiaire d'un amplificateur différentiel. La loi d'Ohm donne :
+En plus de la mesure de la tension du capteur, une mesure du courant est aussi réalisée à partir de la tension aux bornes de la résistance R par l'intermédiaire d'un amplificateur différentiel. La résistance du capteur est calculée avec la loi d'Ohm. 
 
 
 
-Arduino
-=======
+Programmes
+==========
 
-Montage
--------
+Algorithme
+----------
 
-La capteur est connecté à la masse. L'entrée analogique ``A0`` mesure la tension du capteur.
+L'algorithme suivant mesure la résistance de la CTN puis calcule la température correspondante.
+
+.. code:: 
+
+   REPETER :
+      Mesurer la tension U
+      Calculer la résistance R
+      Calculer la température T
+      Afficher R et T
+      Attendre 1 seconde
+
+En pratique, il serait possible de fournir dans un premier temps le **programme qu'avec la mesure de la résistance** afin de tracer la caractéristique R=f(T) de la CTN.
+
+Ensuite à partir du modèle obtenu, demander à l'élève de **compléter le programme pour afficher la température correspondante**.
+
+Arduino (C/C++)
+---------------
+
+L'entrée analogique ``A0`` mesure la tension du capteur.
 
 .. image:: fritzing/ctn_montage_arduino.png
    :width: 961
@@ -145,12 +163,6 @@ La capteur est connecté à la masse. L'entrée analogique ``A0`` mesure la tens
    :alt:
    :align: center
 
-
-
-Langage Arduino (C/C++)
----------------------------------
-
-Programme de base qui **mesure la résistance** et **calcule la température** avec la relation de Steinhart-Hart :
 
 .. code-block:: arduino
 
@@ -186,12 +198,10 @@ Programme de base qui **mesure la résistance** et **calcule la température** a
      delay(1000);                                  // Temporisation de 1s
    }
 
-Autres programmes :
-
-Langage Python (Nanpy)
+Arduino (Python/Nanpy)
 ----------------------
 
-Le même programme en langage Python avec Nanpy en mode pilotage de la carte Arduino.
+Le montage reste le même.
 
 .. code-block:: Python
 
@@ -224,11 +234,9 @@ Le même programme en langage Python avec Nanpy en mode pilotage de la carte Ard
    port.close()                                 # Fermeture du port série
 
 
-PyBoard
-=======
+PyBoard (MicroPython)
+---------------------
 
-Montage
--------
 
 .. image:: fritzing/ctn_montage_pyboard.png
    :width: 581
@@ -237,14 +245,32 @@ Montage
    :alt:
    :align: center
 
-Programme MicroPython
----------------------
 
-Micro:bit
-=========
+.. code-block:: Python
 
-Montage
--------
+   # Mesure de la resistance d'une CTN et calcul de la température
+   # Calcul de la température à partir de la relation de Steinhart-Hart
+
+   from pyb import Pin, ADC
+   from math import log
+   from time import sleep_ms
+
+   adc = ADC(Pin("A0"))        # Déclaration du CAN
+
+   Ro = 10e3                   # Résistance série
+   A =  0.0010832035972923174  # Coeff. de Steinhart-Hart
+   B =  0.00021723460553451255 # ...
+   C =  3.276999926128753e-07  # ...
+
+   while True:
+      N = adc.read()                               # Mesure de la tension
+      R = Ro*N/(4095-N)                            # Calcul de R
+      T = 1/(A + B*log(R) + C*log(R)**3) - 273.15  # Relation de Steinhart-Hart
+      print("R =", R, "T =", T)                    # Affichage
+      sleep_ms(1000)                               # Temporisation
+
+Micro:bit (MicroPython)
+-----------------------
 
 .. image:: fritzing/ctn_montage_microbit.png
    :width: 588
@@ -253,14 +279,30 @@ Montage
    :alt:
    :align: center
 
-Programme MicroPython
----------------------
+.. code-block:: Python
 
+   # Mesure de la resistance d'une CTN et calcul de la température
+   # Calcul de la température à partir de la relation de Steinhart-Hart
+
+   from microbit import *
+   from math import log
+
+   Ro = 10e3     # Résistance série
+   A = 1.0832e-3 # Coefficients de Steinhart-Hart
+   B = 2.1723e-4 # ...
+   C = 3.2770e-7 # ...
+
+   while True:
+      N = pin0.read_analog()                       # Mesure de la tension
+      R = Ro*N/(1023-N)                            # Calcul de R
+      T = 1/(A + B*log(R) + C*log(R)**3) - 273.15  # Relation de Steinhart-Hart
+      print("R =", R, "T =", T)                    # Affichage
+      sleep(1000)                                  # Temporisation
 
 A retenir
 =========
 
-Placer un **capteur résistif** (température, pression, lumière, ...) dans un **pont diviseur de tension** reste une solution simple d'interfacage avec un microcontrôleur.
+Placer un **capteur résistif** (température, pression, lumière, ...) dans un **pont diviseur de tension** reste une **solution simple pour mesurer sa résistance** à l'aide d'un microcontrôleur.
 
 
 
