@@ -1,3 +1,4 @@
+====================================
 Émission d'un son (seconde générale)
 ====================================
 
@@ -6,10 +7,10 @@
    Utiliser un dispositif comportant un microcontrôleur pour produire un signal sonore.
 
 Principe
---------
+========
 
-Les microcontrôleurs Arduino ne possédant pas de sortie analogique (CNA) pour générer des tensions sinusoïdales,
-une méthode simple pour produire un son est de générer une tension carrée (entre 0 V et 5 V) de fréquence f à l'entrée d'un haut-parleur.
+Certains microcontrôleurs (Arduino et Micro:bit) ne possédant pas de sortie analogique (CNA) pour générer des tensions sinusoïdales,
+une méthode simple pour produire un son est de générer une tension carrée (entre 0 et Vcc) de fréquence f à l'entrée d'un haut-parleur.
 
 Le son obtenu par cette technique n'est pas pur car il comporte des harmoniques aux fréquences 3f, 5f, 7f, ...
 
@@ -18,10 +19,11 @@ Le son obtenu par cette technique n'est pas pur car il comporte des harmoniques 
    Pour les faibles fréquences, le son devient "métallique" avec la présence importante d'harmoniques !
 
 
+Méthode 1 : construire le signal carré
+======================================
 
-
-Montage
--------
+Arduino (C/C++)
+---------------
 
 .. image:: Images/Son_Piezo.png
    :width: 514
@@ -30,17 +32,7 @@ Montage
    :alt: 
    :align: center
 
-
-Programme
----------
-
-Méthode 1 : construire le signal carré
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. code:: arduino
-
-   /*
-    *  Générer un son simple
-    */
+.. code-block:: arduino
 
    #define brocheHP 8
                             
@@ -58,10 +50,23 @@ Méthode 1 : construire le signal carré
      delayMicroseconds(1000000*periode/2.0);  
    }
 
-Méthode 2 : avec la fonction ``tone()``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Arduino (Python/Nanpy)
+----------------------
 
-.. code:: arduino
+PyBoard (MicroPython)
+---------------------
+
+Micro:bit (MicroPython)
+-----------------------
+
+
+Méthode 2 : avec la fonction ``tone()``
+=======================================
+
+Arduino (C/C++)
+---------------
+
+.. code-block:: arduino
 
    /*
     * Génération d un son
@@ -85,11 +90,19 @@ Méthode 2 : avec la fonction ``tone()``
    void loop() {
    }
 
+Arduino (Python/Nanpy)
+----------------------
+
+PyBoard (MicroPython)
+---------------------
+
+Micro:bit (MicroPython)
+-----------------------
+
 Applications
-------------
+============
 
 * Hauteur d'un son (relation entre fréquences et notes).
 
-* Générer une mélodie à partir de plusieurs notes (voir programme dans le menu ``Fichier > Exemples > Digital > toneMelody`` du logiciel Arduino).
-
+* Générer une mélodie à partir de plusieurs notes.
 
