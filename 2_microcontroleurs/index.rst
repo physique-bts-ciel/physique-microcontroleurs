@@ -12,6 +12,5 @@ Les microcontrôleurs
    arduino/index
    microbit/index
    pyboard/index
-   micropython/index
 
 

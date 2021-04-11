@@ -192,9 +192,9 @@ latex_elements = {
     %% %% %% %% %% % Quote for all places except Chapter
     \newcommand{\sectionquote}[2]{{\quote{\textit{``#1''}}{\textbf {\textit{--#2}}}}}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \usepackage{xcolor}			
-    \definecolor{bl}{rgb}{0.0,0.2,0.6}	%%% Bleu des titres
-    \usepackage{sectsty}		
+    \usepackage{xcolor}         
+    \definecolor{bl}{rgb}{0.0,0.2,0.6}  %%% Bleu des titres
+    \usepackage{sectsty}        
     %\allsectionsfont{\color{bl}\scshape\selectfont}
     \chapterfont{\color{bl}\rmfamily\centering}
     \partfont{\color{bl}\rmfamily\centering}
@@ -219,7 +219,7 @@ latex_elements = {
     \vspace{0mm}
     \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.4]{CTN_Montage.png}
+    %\includegraphics[scale=0.4]{CTN_Montage.png}
     \end{figure}
     \vspace{10mm}
     \\
