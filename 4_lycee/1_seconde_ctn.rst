@@ -12,16 +12,224 @@ Capteur résistif - CTN (seconde générale)
 
 
 
-Principe
-========
-
-Un capteur résistif est un composant électronique dont la résistance varie en fonction de la grandeur physique à mesurer.
 
 Cas d'une CTN
--------------
+=============
 
 Une CTN est un **capteur résistif  à coefficient de température négatif** dont l'évolution de la résistance en fonction de la température est donnée par la figure suivante :
 
+
+
+
+
+
+Principe de mesure de résistance de la CTN
+==========================================
+
+La plupart des modules comportant un capteur résistif utilise un pont diviseur de tension pour la mesure de la résistance du capteur.
+
+Montage 1 : capteur connecté à la masse
+---------------------------------------
+
+Il s'agit du montage le plus souvent rencontré.
+
+.. image:: Images/ctn_module_resistif_1.png
+   :width: 700
+   :height: 300
+   :scale: 70 %
+   :alt:
+   :align: center
+
+.. image:: Images/ctn_module_resistif_1_perso.png
+   :width: 400
+   :height: 340
+   :scale: 50 %
+   :alt:
+   :align: center
+
+Montage 2 : capteur connecté à Vcc 
+----------------------------------
+
+
+.. image:: Images/ctn_module_resistif_2.png
+   :width: 700
+   :height: 300
+   :scale: 70 %
+   :alt:
+   :align: center
+
+
+.. figure:: Images/ctn_module_resistif_2_pluguino.png
+   :width: 300
+   :height: 300
+   :scale: 70 %
+   :alt:
+   :align: center
+
+   Module Plug'uino (Sciencéthic)
+
+Montage : mesure de la tension et du courant (ex. capteurs Educaduino)
+----------------------------------------------------------------------
+
+.. image:: Images/ctn_module_resistif_3.png
+   :width: 730
+   :height: 350
+   :scale: 70 %
+   :alt:
+   :align: center
+
+.. figure:: Images/ctn_module_resistif_3_educaduino.png
+   :width: 800
+   :height: 400
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   Module Educaduino Lab (Eurosmart)
+
+En plus de la mesure de la tension du capteur, une mesure du courant est aussi réalisée à partir de la tension aux bornes de la résistance R par l'intermédiaire d'un amplificateur différentiel. La résistance du capteur est alors 
+calculée avec la loi d'Ohm. 
+
+
+Mesure de la résistance de la CTN
+=================================
+
+Algorithme
+----------
+
+.. code:: 
+
+   REPETER :
+      Mesurer la tension U
+      Calculer la résistance R
+      Afficher R
+      Attendre 1 s
+
+Arduino (C/C++)
+---------------
+
+L'entrée analogique ``A0`` mesure la tension du capteur.
+
+.. image:: fritzing/ctn_montage_arduino.png
+   :width: 961
+   :height: 832
+   :scale: 33 %
+   :alt:
+   :align: center
+
+
+.. code-block:: arduino
+
+   // Mesure de la résistance d'une CTN
+
+   #define Vcc 5       // Tension d'alimentation
+   #define Ro  10000   // Résistance du pont
+
+   float U;            // Tension CTN
+   float R;            // Résistance CTN
+ 
+
+   void setup() {
+      Serial.begin(9600);  // Paramétrage du port série
+   }
+
+   void loop() {
+     U = analogRead(A0)*5.0/1023;      // Lecture tension en V
+     R = Ro*U/(Vcc-U);                 // Calcul de la résistance
+     Serial.println(R);                // Affichage
+     delay(1000);                      // Temporisation de 1s
+   }
+
+Arduino (Python/Nanpy)
+----------------------
+
+Le montage reste le même.
+
+.. code-block:: Python
+
+   # Mesure de la résistance d'une CTN
+
+   from nanpy import ArduinoApi           # Gestion de l'Arduino
+   from nanpy import SerialManager        # Gestion port série
+   from time import sleep                 # Importation de sleep(seconde)
+
+   Vcc = 5.0                              # Tension d'alimentation
+   Ro = 10000                             # Résistance du pont
+
+   port = SerialManager(device='COM6')    # Sélection du port série (à remplacer) 
+   uno = ArduinoApi(connection=port)      # Déclaration de la carte Arduino
+
+
+   while True :
+      U = uno.analogRead(0)*5/1023        # Lecture la tension sur A0
+      R = Ro*U/(Vcc-U)                    # Calcul de la résistance
+      print("R = ", R)                    # Affichage
+      sleep(1)                            # Temporisation d'une seconde
+
+   port.close()                           # Fermeture du port série
+
+
+PyBoard (MicroPython)
+---------------------
+
+
+.. image:: fritzing/ctn_montage_pyboard.png
+   :width: 581
+   :height: 528
+   :scale: 50 %
+   :alt:
+   :align: center
+
+
+.. code-block:: Python
+
+   # Mesure de la resistance d'une CTN
+
+   from pyb import Pin, ADC
+   from time import sleep_ms
+
+   adc = ADC(Pin("A0"))        # Déclaration du CAN
+
+   Ro = 10e3                   # Résistance série
+
+   while True:
+      N = adc.read()           # Mesure de la tension
+      R = Ro*N/(4095-N)        # Calcul de R
+      print("R =", R)          # Affichage
+      sleep_ms(1000)           # Temporisation
+
+Micro:bit (MicroPython)
+-----------------------
+
+.. image:: fritzing/ctn_montage_microbit.png
+   :width: 588
+   :height: 742
+   :scale: 33 %
+   :alt:
+   :align: center
+
+.. code-block:: Python
+
+   # Mesure de la resistance d'une CTN et calcul de la température
+
+   from microbit import *
+ 
+   Ro = 10e3                   # Résistance série
+
+   while True:
+      N = pin0.read_analog()   # Mesure de la tension
+      R = Ro*N/(1023-N)        # Calcul de R
+      print("R =", R)          # Affichage
+      sleep(1000)              # Temporisation
+
+
+Caractéristique R=f(T)
+======================
+
+Courbe
+------
+
+Les mesures suivantes peuvent être effectuées avec le **microcontrôleur** ou à **l'ohmmètre**.
 
 .. figure:: Images/CTN_Caracteristique_R(T).png
    :width: 843
@@ -36,6 +244,7 @@ Une CTN est un **capteur résistif  à coefficient de température négatif** do
 .. note::
 
    Pour 25°C la résistance mesurée prend la valeur particulière de 10 |kohm| !
+
 
 Relation de Steinhart-Hart
 --------------------------
@@ -85,84 +294,12 @@ Le calcul de la température (en K) s'effectue à l'aide de la relation suivante
    \dfrac{1}{T} = \dfrac{1}{\beta}\times\ln(\dfrac{R}{R_0})+\dfrac{1}{T_0}
 
 
-Mesure de la résistance d'un capteur résistif
-=============================================
 
-La plupart des modules comportant un capteur résistif utilise un pont diviseur de tension pour la mesure de la résistance du capteur.
-
-Montage 1 : capteur connecté à la masse
----------------------------------------
-
-Il s'agit du montage le plus souvent rencontré.
-
-.. image:: Images/ctn_module_resistif_1.png
-   :width: 700
-   :height: 300
-   :scale: 70 %
-   :alt:
-   :align: center
-
-
-Montage 2 : capteur connecté à Vcc
-----------------------------------
-
-C'est le montage utilisé par les capteurs Plug'uino.
-
-.. image:: Images/ctn_module_resistif_2.png
-   :width: 700
-   :height: 300
-   :scale: 70 %
-   :alt:
-   :align: center
-
-
-Cas particulier des capteurs résistifs Educaduino
--------------------------------------------------
-
-.. image:: Images/ctn_module_resistif_3.png
-   :width: 730
-   :height: 350
-   :scale: 70 %
-   :alt:
-   :align: center
-
-En plus de la mesure de la tension du capteur, une mesure du courant est aussi réalisée à partir de la tension aux bornes de la résistance R par l'intermédiaire d'un amplificateur différentiel. La résistance du capteur est calculée avec la loi d'Ohm. 
-
-
-
-Programmes
-==========
-
-Algorithme
-----------
-
-L'algorithme suivant mesure la résistance de la CTN puis calcule la température correspondante.
-
-.. code:: 
-
-   REPETER :
-      Mesurer la tension U
-      Calculer la résistance R
-      Calculer la température T
-      Afficher R et T
-      Attendre 1 seconde
-
-En pratique, il serait possible de fournir dans un premier temps le **programme qu'avec la mesure de la résistance** afin de tracer la caractéristique R=f(T) de la CTN.
-
-Ensuite à partir du modèle obtenu, demander à l'élève de **compléter le programme pour afficher la température correspondante**.
+Application : affichage de la température
+=========================================
 
 Arduino (C/C++)
 ---------------
-
-L'entrée analogique ``A0`` mesure la tension du capteur.
-
-.. image:: fritzing/ctn_montage_arduino.png
-   :width: 961
-   :height: 832
-   :scale: 33 %
-   :alt:
-   :align: center
-
 
 .. code-block:: arduino
 
@@ -201,8 +338,6 @@ L'entrée analogique ``A0`` mesure la tension du capteur.
 Arduino (Python/Nanpy)
 ----------------------
 
-Le montage reste le même.
-
 .. code-block:: Python
 
    # Mesure de la resistance d'une CTN et calcul de la température
@@ -237,15 +372,6 @@ Le montage reste le même.
 PyBoard (MicroPython)
 ---------------------
 
-
-.. image:: fritzing/ctn_montage_pyboard.png
-   :width: 581
-   :height: 528
-   :scale: 50 %
-   :alt:
-   :align: center
-
-
 .. code-block:: Python
 
    # Mesure de la resistance d'une CTN et calcul de la température
@@ -272,13 +398,6 @@ PyBoard (MicroPython)
 Micro:bit (MicroPython)
 -----------------------
 
-.. image:: fritzing/ctn_montage_microbit.png
-   :width: 588
-   :height: 742
-   :scale: 33 %
-   :alt:
-   :align: center
-
 .. code-block:: Python
 
    # Mesure de la resistance d'une CTN et calcul de la température
@@ -298,6 +417,8 @@ Micro:bit (MicroPython)
       T = 1/(A + B*log(R) + C*log(R)**3) - 273.15  # Relation de Steinhart-Hart
       print("R =", R, "T =", T)                    # Affichage
       sleep(1000)                                  # Temporisation
+
+
 
 A retenir
 =========

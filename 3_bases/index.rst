@@ -1,5 +1,6 @@
-Les bases
-=========
+===================
+Les bases d'Arduino
+===================
 
 
 .. only:: html
@@ -12,6 +13,5 @@ Les bases
    1_output_led
    2_pwm_led
    3_communication_serie
-   4_afficheur
    5_can_tension
 

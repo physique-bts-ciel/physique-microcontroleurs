@@ -1,8 +1,9 @@
+=========================
 Mesurer une tension (CAN)
 =========================
 
 Principe
---------
+========
 
 La mesure d'une tension par un microcontrôleur est réalisée en interne par un **convertisseur analogique-numérique**.
 
@@ -25,7 +26,7 @@ Arduino UNO dispose de **6 entrées analogiques** disponibles sur les broches A0
    Le tension appliquée sur les entrées analogiques doivent être **strictement comprise entre 0 V et 5 V** sous peine de détruire le microcontrôleur.
 
 Montage
--------
+=======
 
 Un potentiomètre monté en pont diviseur de tension est branché entre la masse (``GND``) et la tension d'alimentation (``5V``). Ce potentiomètre délivre donc une **tension réglable** en ``0 V`` et ``5 V`` sur l'entrée ``A0``.
 
@@ -38,8 +39,8 @@ Un potentiomètre monté en pont diviseur de tension est branché entre la masse
    
    Montage potentiométrique
 
-Programme
----------
+Programme en langage Arduino (C/C++)
+====================================
 
 Le programme suivant lit la tension sur l'entrée ``A0`` et affiche sa valeur dans le moniteur série du logiciel Arduino.
 
@@ -73,28 +74,47 @@ Le programme suivant lit la tension sur l'entrée ``A0`` et affiche sa valeur da
 
 * L'expression ``N*5.0/1023`` calcule la valeur de la tension en volt.
 
-A retenir
----------
 
-===================== =======================================
-Instruction           Description
-===================== =======================================
-``analogRead(A0)``    Retourne un entier entre 0 et 1023 proportionnel à la tension appliquée
-===================== =======================================
+
+Programme en langage Python (pilotage Nanpy)
+============================================
+
+.. code-block:: python
+
+   from nanpy import ArduinoApi, SerialManager
+   from time import sleep                       # Importation fonction sleep()
+
+   port = SerialManager(device='COM6')          # Sélection du port série à modifier
+   uno = ArduinoApi(connection=port)            # Déclaration de la carte Arduino Uno
+
+
+   for i in range(10):
+      N = uno.analogRead(0)              # Lecture la tension numérique sur A0
+      print("N = ", N)                   # Affichage
+      U = N*5/1023                       # Calcul de la tension en volt
+      print("U = ", round(U, 3), " V")   # Affichage
+      sleep(1)                           # Temporisation d'une seconde
+
+   uno.connection.close()                 # Deconnexion de Arduino
+   port.close()                           # Fermeture du port série
+
+
 
 Applications
-------------
+============
 
 * Interface avec un circuit comportant un capteur.
-* Mesure d'une position (potentiomètre).
+* Un potentiomètre est un capteur de position.
+
+
 
 Aller plus loin : contrôler l'intensité lumineuse d'une LED
------------------------------------------------------------
+===========================================================
 
 En combinant le programme précédant avec celui sur la génération d'une tension PWM, il est possible de régler à l'aide d'un potentiomètre l'intensité lumineuse d'une LED.
 
 Montage
-~~~~~~~
+-------
 
 .. image:: images/Arduino_LED_PWM_Potentiometre.png
    :width: 688
@@ -103,19 +123,15 @@ Montage
    :alt:
    :align: center
 
-Programme
-~~~~~~~~~
+Programme en langage Arduino (C/C++)
+------------------------------------
+
 .. code-block:: arduino
 
-   /*
-    * Controler une LED avec un potentiomètre
-    */
-
-   #define pinLED 9
+   #define pinLED 11
 
    int N;       // Valeur lue sur A0 de 0 à 1023
    int duty;    // Rapport cyclique de 0 à 255
-
 
    void setup() {
    }
@@ -123,10 +139,27 @@ Programme
    void loop() {
      N = analogRead(A0);       // Conversion analogique-numérique sur A0
      duty = N/4;               // Calcul du rapport cyclique
-     analogWrite(pinLED,duty); // Génération de la tension PWM
+     analogWrite(pinLED, duty); // Génération de la tension PWM
      delay(30);                // Attendre 30 ms
    }
 
 .. note::
 
-   Pour convertir proportionnellement un entier sur 10 bits en un entier sur 8 bits, il suffit de diviser par 4 (division entière) !
+   Pour convertir un entier sur 10 bits en un entier sur 8 bits, il suffit de la **division entière par 4** !
+
+Programme en langage Python (pilotage Nanpy)
+--------------------------------------------
+
+.. code-block:: python
+
+   from nanpy import ArduinoApi, SerialManager
+   
+   port = SerialManager(device='COM6')          # Sélection du port série à modifier
+   uno = ArduinoApi(connection=port)            # Déclaration de la carte Arduino Uno
+   
+   pinLed = 11
+   
+   while True:
+       N = uno.analogRead(0)              # Lecture la tension numérique sur A0
+       duty = N//4                        # Division entière par 4
+       uno.analogWrite(pinLed, duty)      # Tension PWM sur la LED

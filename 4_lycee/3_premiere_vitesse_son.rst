@@ -82,19 +82,26 @@ Il est possible de résoudre ce problème en y soudant des **connecteurs supplé
 Mesure de la célérité du son
 ============================
 
-La manipulation consiste à relever la durée de l'écho sonore à l'aide du microcontrôleur pour différentes distances et déduire la célérité du son. 
+La manipulation consiste à relever la durée de l'écho sonore à l'aide du microcontrôleur pour différentes distances et déduire la célérité du son.
+
+.. math::
+
+   c = \dfrac{2 \times d}{\Delta t}
 
 Algorithme
 ----------
 
 .. code::
 
+   TRIG <- 0
+
    REPETER :
-      Sortie TRIG à l'état haut
-      Attendre 10 microseconde
-      Sortie TRIG à l'état bas
-      Mesurer durée d'impulsion sur l'entrée Echo 
-      Afficher le durée
+      TRIG <- Vcc                 # Début impulsion
+      Attendre 10 µs
+      TRIG <- 0                   # Fin impulsion
+      Dt <- Durée impulsion Echo 
+      Afficher Dt
+      Attendre 1 s
 
 Pour plus de précision, il est possible de modifier le programme afin de **réaliser plusieurs mesures** de la durée de l'écho et d'en déduire sa **moyenne**.
 

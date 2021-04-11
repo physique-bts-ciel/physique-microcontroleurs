@@ -1,11 +1,12 @@
 .. |kohm| replace:: :math:`{k\Omega}`
 .. |ohm| replace:: :math:`{\Omega}`
 
+======================================================
 Modifier l'intensité lumineuse d'une LED (sorties PWM)
 ======================================================
 
 Principe
---------
+========
 
 La carte Arduino ne possède pas de vraies sorties analogiques. Mais il est possible de faire **varier la valeur moyenne de la tension d'une sortie digitale** (donc de faire varier l'intensité lumineuse d'une LED) en modifiant son **rapport cyclique** (durée de l'état haut par rapport à la période). C'est le principe de la Modulation à Largeur d'Impulsion (MLI) ou Pulse Width Modulation (PWM) en anglais.
 
@@ -32,7 +33,7 @@ La carte Arduino UNO dispose de 6 sorties PWM sur les broches 3, 5, 6, 9, 10, 11
    La fréquence d'un signal PWM est fixée à 490 Hz !
 
 Montage
--------
+=======
 
 .. image:: images/Arduino_LED_PWM.png
    :width: 536
@@ -43,8 +44,8 @@ Montage
 
 Une LED en série avec une résistance de 220 |ohm| est branchée sur la broche 11.
 
-Programme
----------
+Programme en langage Arduino (C/C++)
+====================================
 
 .. code:: arduino
 
@@ -63,23 +64,34 @@ Programme
      delay(1000);           // Attendre 1 s
    }
 
-* La fonction ``analogWrite(LED,duty)`` génère une modulation à largeur d'impulsion sur la broche 11.
-* L'argument ``duty`` est un nombre entier entre 0 et 255 respectivement pour un rapport cyclique entre 0% et 100%.
+* La fonction ``analogWrite(LED,duty)`` génère une modulation à largeur d'impulsion sur la broche 11 où ``duty`` est un nombre entier entre 0 et 255 respectivement pour un rapport cyclique entre 0% et 100%.
 
 
-A retenir
----------
+Programme en langage Python (Nanpy)
+===================================
 
-Seules les broches 3, 5, 6, 9, 10 et 11 de l'Arduino Uno permettent de générer des signaux PWM.
+.. code:: python
 
-========================== =======================================
-Instruction                Description
-========================== =======================================
-``pinMode(pin,OUTPUT)``    Configure le broche ``pin`` en sortie
-``analogWrite(pin,duty)``  Génère une tension PWM sur le broche ``pin``
+   from nanpy import ArduinoApi, SerialManager
+   from time import sleep
+   
+   port = SerialManager(device='COM6')          # Sélection du port série à modifier
+   uno = ArduinoApi(connection=port)            # Déclaration de la carte Arduino Uno
+   
+   pinLed = 11                                  # Led branchée sur broche 11
+   uno.pinMode(pinLed, uno.OUTPUT)              # Broche Led en sortie
+   
+   for i in range(9):
+       uno.analogWrite(pinLed, 10)   # PWM à 10/255
+       sleep(1)                      # Attendre 1s
+       uno.analogWrite(pinLed, 50)   # PWM à 50/255
+       sleep(1)                      # Attendre 1s
+       uno.analogWrite(pinLed, 200)  # PWM à 200/255
+       sleep(1)                      # Attendre 1s
+   
+   port.close()                      # Fermeture du port série
 
-                           avec le rapport cyclique ``duty`` (entre 0 à 255)
-========================== =======================================
+
 
 Applications
 ------------
