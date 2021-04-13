@@ -96,10 +96,10 @@ Algorithme
    TRIG <- 0
 
    REPETER :
-      TRIG <- Vcc                 # Début impulsion
+      TRIG <- Vcc                        # Début impulsion sur Trig
       Attendre 10 µs
-      TRIG <- 0                   # Fin impulsion
-      Dt <- Durée impulsion Echo 
+      TRIG <- 0                          # Fin impulsion sur Trig
+      Dt   <- Durée impulsion sur Echo   # Mesure
       Afficher Dt
       Attendre 1 s
 
@@ -148,11 +148,42 @@ Arduino (C/C++)
 Arduino (Python/Nanpy)
 ----------------------
 
-PyBoard (MicroPython)
----------------------
+.. code-block:: python
 
-Micro:bit (MicroPython)
------------------------
+   # Réalisé avec une version modifiée de Nanpy par Eurosmart
+   from nanpy import SerialManager, Ultrasonic
+   from time import sleep
+
+   port = SerialManager(device='/dev/ttyACM0')   # Sélection du port série (exemple : device = 'COM6')
+
+   moduleUltrason = Ultrasonic(trig=8, echo=9, useInches=False, connection=port) # Déclaration du module HC-SR04
+   sleep(0.1)                                    # Temporisation
+
+   for i in range(10):
+      duree = moduleUltrason.get_duration()     # Durée en µs pour l'aller-retour du son
+      print("Durée =", duree, "µs")             # Affichage
+      sleep(1)                                  # Temporisation
+
+Résultats :
+
+.. code-block:: python
+
+   Durée = 1456 µs
+   Durée = 1453 µs
+   Durée = 1451 µs
+   Durée = 1450 µs
+   Durée = 1453 µs
+   Durée = 1453 µs
+   Durée = 1447 µs
+   Durée = 1444 µs
+   Durée = 1452 µs
+   Durée = 1446 µs
+
+.. PyBoard (MicroPython)
+.. ---------------------
+
+.. Micro:bit (MicroPython)
+.. -----------------------
 
 
 Application : réalisation d'un télémètre
@@ -169,10 +200,51 @@ Il suffit d'ajouter le calcul de la distance juste après la mesure de la durée
 Arduino (C/C++)
 ---------------
 
+.. code-block:: arduino
+
+   // Mesure de la durée d'une distance
+
+   #define pinTrig 8       // Trig sur broche 8
+   #define pinEcho 9       // Echo sur broche 9
+
+   long dureeEcho;         // Durée de l'Echo
+   float distance;         // Distance en module et réflecteur
+   float vitesse = 345 ;   // Vitesse obtenue
+
+   void setup() {
+   pinMode(pinTrig,OUTPUT);      // Broche Trig en sortie
+   digitalWrite(pinEcho,LOW);    // Sortie Trig à l état bas
+   pinMode(pinEcho,INPUT);       // Broche Echo en entrée
+   Serial.begin(9600);           // Paramétrage du port série
+   }
+
+   void loop() {
+   digitalWrite(pinTrig,HIGH);            // Début impulsion de declenchement
+   delayMicroseconds(10);                 // Attendre 10 microseconde
+   digitalWrite(pinTrig,LOW);             // Fin impulsion (Etat bas)
+   dureeEcho = pulseIn(pinEcho,HIGH);     // Mesure de la durée de l'impulsion sur Echo
+   distance = (vitesse*dureeEcho*1E-6)/2; // Calcul de la distance
+   Serial.print("Duree (us) = ");         // Affichage sur port série
+   Serial.println(dureeEcho);             //
+   Serial.print("Distance (m) = ");       // Affichage sur port série
+   Serial.println(distance);              //
+   delay(1000);                           // Attendre 1s
+   }
+
+En autonome avec un écran LCD :
+
+.. figure:: Images/Ultrason_HC-SR04_Educaduino_LCD.png
+   :width: 850
+   :height: 550
+   :scale: 50 %
+   :alt: Montage ultrason - Arduino
+   :align: center
+
+   Télémètre sur Educaduino-Lab LCD
 
 .. code-block:: arduino
 
-   //Application : télémétre sur écran LCD 2x16
+   //Application : télémètre sur écran LCD 2x16
    
    #include <LiquidCrystal.h>        // Importation de la librairie LiquidCrystal
    #define pinTrig 8       // Trig sur broche 8
@@ -205,14 +277,52 @@ Arduino (C/C++)
     delay(1000);                                  // Attendre 1s
    }
 
-.. figure:: Images/Ultrason_HC-SR04_Educaduino_LCD.png
-   :width: 850
-   :height: 550
-   :scale: 50 %
-   :alt: Montage ultrason - Arduino
-   :align: center
 
-   Télémètre sur Educaduino-Lab LCD
+
+Arduino (Python/Nanpy)
+----------------------
+
+.. code-block:: python
+
+   # Réalisé avec une version modifiée de Nanpy par Eurosmart
+   from nanpy import SerialManager, Ultrasonic
+   from time import sleep
+
+   port = SerialManager(device='/dev/ttyACM0')   # Sélection du port série (exemple : device = 'COM6')
+
+   moduleUltrason = Ultrasonic(trig=8, echo=9, useInches=False, connection=port) # Déclaration du module HC-SR04
+   sleep(0.1)                                    # Temporisation
+
+   vitesse_son = 345                             # vitesse du son 345 m/S dans l'air
+
+   for i in range(10):
+      duree = moduleUltrason.get_duration()     # Durée en µs pour l'aller-retour du son
+      print("Durée =", duree, "µs")             # Affichage
+      distance = (vitesse_son*duree*1E-6)/2;    # Calcul de la distance en m
+      print("Distance = ", distance, "m")       # Affichage
+      sleep(1)                                  # Temporisation
+
+
+Résultats :
+
+.. code-block:: python
+
+   Durée = 1997 µs
+   Distance =  0.34448249999999997 m
+   Durée = 1996 µs
+   Distance =  0.34431 m
+   Durée = 2019 µs
+   Distance =  0.34827749999999996 m
+   Durée = 8214 µs
+   Distance =  1.416915 m
+   Durée = 8181 µs
+   Distance =  1.4112225 m
+   Durée = 8177 µs
+   Distance =  1.4105325 m
+   Durée = 1822 µs
+   Distance =  0.314295 m
+   Durée = 1915 µs
+   Distance =  0.3303375 m
 
 A retenir
 =========

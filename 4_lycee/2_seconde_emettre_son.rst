@@ -53,15 +53,17 @@ Arduino (C/C++)
 Arduino (Python/Nanpy)
 ----------------------
 
-PyBoard (MicroPython)
----------------------
+Cette méthode n'est pas applicable ici car le pilotage de l'Arduino par Nanpy est **trop lent** !
 
-Micro:bit (MicroPython)
------------------------
+.. PyBoard (MicroPython)
+.. ---------------------
+
+.. Micro:bit (MicroPython)
+.. -----------------------
 
 
-Méthode 2 : avec la fonction ``tone()``
-=======================================
+Méthode 2 : utiliser une fonction spéciale
+==========================================
 
 Arduino (C/C++)
 ---------------
@@ -69,35 +71,93 @@ Arduino (C/C++)
 .. code-block:: arduino
 
    /*
-    * Génération d un son
-    */
+   Exemple Arduino
+   */
+   #include "pitches.h"
 
-   #define Do3 262
-   #define Re3 294
-   #define Mi3 330
-   #define Fa3 349
-   #define Sol3 392
-   #define La3 440
-   #define Si3 494
+   // notes in the melody:
+   int melody[] = {NOTE_C4, NOTE_G3,NOTE_G3, NOTE_A3, NOTE_G3,0, NOTE_B3, NOTE_C4};
 
-   #define brocheHP 8
+   // note durations: 4 = quarter note, 8 = eighth note, etc.:
+   int noteDurations[] = {4, 8, 8, 4, 4, 4, 4, 4 };
 
    void setup() {
-     pinMode(brocheHP,OUTPUT);
-     tone(brocheHP,La3,4000);
+   for (int thisNote = 0; thisNote < 8; thisNote++) {
+      int noteDuration = 1000/noteDurations[thisNote];
+      tone(8, melody[thisNote],noteDuration);
+      int pauseBetweenNotes = noteDuration * 1.30;
+      delay(pauseBetweenNotes);
+      noTone(8);
+   }
    }
 
    void loop() {
+   // Pas de boucle ici !
    }
 
 Arduino (Python/Nanpy)
 ----------------------
 
-PyBoard (MicroPython)
----------------------
+La classe ``Note`` de Nanpy dispose des méthodes :
 
-Micro:bit (MicroPython)
------------------------
+* ``play(fréquence, durée)`` pour jouer une note pendant un durée en ms ;
+* ``stop()`` pour arrêter la lecture de la note.
+
+.. code-block:: Python
+
+   # Nanpy v0.96
+   from nanpy import ArduinoApi, SerialManager, Tone
+   from time import sleep                      
+
+   port = SerialManager(device='/dev/ttyACM0')  # Sélection du port série (exemple : device = 'COM6')
+   uno = ArduinoApi(connection=port)            # Déclaration de la carte Arduino Uno
+
+   note =  [Tone.NOTE_C4, Tone.NOTE_G3, Tone.NOTE_G3, Tone.NOTE_A3,
+            Tone.NOTE_G3, 0 , Tone.NOTE_B3, Tone.NOTE_C4]
+   noteDuration = [4, 8, 8, 4,
+                   4, 4, 4, 4]
+
+   hp = Tone(8)                                 # Haut parleur sur broche 8
+
+   for i in range(8):
+      duree = 1000/noteDuration[i]              # durée en ms
+      hp.play(note[i] , duree)                  # jouer la note
+      sleep(1.3*duree*1E-3)                     # pause en les notes
+
+   hp.stop()                                    # Arrêt de la lecture
+
+
+.. note::
+
+   Une méthode ``tone()`` équivalent à celle du langage Arduino a été ajoutée dans la version modifiée de Nanpy d'Eurosmart. 
+
+.. code-block:: Python
+
+   # Version modifiée de Nanpy par Eurosmart
+   from nanpy import ArduinoApi, SerialManager, Tone
+   from time import sleep                       
+   
+   port = SerialManager(device='/dev/ttyACM0')  # Sélection du port série (exemple : device = 'COM6')
+   uno = ArduinoApi(connection=port)            # Déclaration de la carte Arduino Uno
+   
+   melody =  [Tone.NOTE_C4, Tone.NOTE_G3, Tone.NOTE_G3, Tone.NOTE_A3, Tone.NOTE_G3, 0 , Tone.NOTE_B3, Tone.NOTE_C4]
+   noteDuration = [4, 8, 8, 4, 4, 4, 4, 4]
+   
+   pinHP = 8                          # Haut-parleur sur broche 8
+   
+   for i in range(8):
+       duree = 1/noteDuration[i]      # durée en ms
+       uno.tone(pinHP, melody[i])     # Lecture de la note      
+       sleep(duree)                   # Attendre la lecture
+       uno.noTone(pinHP)              # Arrêt de la note
+       sleep(duree*1.3)               # Pause entre les notes
+
+
+.. PyBoard (MicroPython)
+.. ---------------------
+
+.. Micro:bit (MicroPython)
+.. -----------------------
 
 Applications
 ============
