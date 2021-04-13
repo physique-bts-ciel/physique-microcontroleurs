@@ -19,19 +19,23 @@ Cas d'une CTN
 Une CTN est un **capteur résistif  à coefficient de température négatif** dont l'évolution de la résistance en fonction de la température est donnée par la figure suivante :
 
 
-
+.. image:: Images/CTN_Caracteristique_R(T).png
+   :width: 843
+   :height: 581
+   :scale: 50 %
+   :alt:
+   :align: center
 
 
 
 Principe de mesure de résistance de la CTN
 ==========================================
 
-La plupart des modules comportant un capteur résistif utilise un pont diviseur de tension pour la mesure de la résistance du capteur.
+La plupart des modules pour capteur résistif utilise un **pont diviseur de tension** pour la mesure de la résistance du capteur. Par rapport au pont Wheatstone, cette méthode présente l’avantage d’être simple à mettre en oeuvre.
 
 Montage 1 : capteur connecté à la masse
 ---------------------------------------
 
-Il s'agit du montage le plus souvent rencontré.
 
 .. image:: Images/ctn_module_resistif_1.png
    :width: 700
@@ -87,23 +91,14 @@ Montage : mesure de la tension et du courant (ex. capteurs Educaduino)
 
    Module Educaduino Lab (Eurosmart)
 
-En plus de la mesure de la tension du capteur, une mesure du courant est aussi réalisée à partir de la tension aux bornes de la résistance R par l'intermédiaire d'un amplificateur différentiel. La résistance du capteur est alors 
-calculée avec la loi d'Ohm. 
+En plus de la **mesure de la tension** du capteur, une **mesure du courant** est aussi réalisée à partir de la tension aux bornes de la résistance R par l’intermédiaire d’un amplificateur différentiel. La résistance du capteur est alors calculée avec la **loi d’Ohm**. 
 
 
 Mesure de la résistance de la CTN
 =================================
 
-Algorithme
-----------
+L’ensemble formé du module capteur résistif et du microcontrôleur est vu comme un **ohmmètre**. Les programmes suivants ont donc pour objectif de mesurer la résistance de la CTN.
 
-.. code:: 
-
-   REPETER :
-      Mesurer la tension U
-      Calculer la résistance R
-      Afficher R
-      Attendre 1 s
 
 Arduino (C/C++)
 ---------------
@@ -148,7 +143,6 @@ Le montage reste le même.
 .. code-block:: Python
 
    # Mesure de la résistance d'une CTN
-
    from nanpy import ArduinoApi           # Gestion de l'Arduino
    from nanpy import SerialManager        # Gestion port série
    from time import sleep                 # Importation de sleep(seconde)
@@ -172,6 +166,8 @@ Le montage reste le même.
 PyBoard (MicroPython)
 ---------------------
 
+Le montage ci-dessous utilise une carte Feather STM32F405 Express. L’entrée analogique A0 mesure la tension du capteur.
+
 
 .. image:: fritzing/ctn_montage_pyboard.png
    :width: 581
@@ -184,19 +180,16 @@ PyBoard (MicroPython)
 .. code-block:: Python
 
    # Mesure de la resistance d'une CTN
+   from pyb import Pin, ADC, delay
 
-   from pyb import Pin, ADC
-   from time import sleep_ms
-
-   adc = ADC(Pin("A0"))        # Déclaration du CAN
-
-   Ro = 10e3                   # Résistance série
+   adc = ADC(Pin("A0")) # Déclaration du CAN
+   Ro = 10e3 # Résistance série
 
    while True:
-      N = adc.read()           # Mesure de la tension
-      R = Ro*N/(4095-N)        # Calcul de R
-      print("R =", R)          # Affichage
-      sleep_ms(1000)           # Temporisation
+      N = adc.read() # Mesure de la tension
+      R = Ro*N/(4095-N) # Calcul de R
+      print("R =", R) # Affichage
+      delay(1000) # Temporisation
 
 Micro:bit (MicroPython)
 -----------------------
@@ -210,8 +203,7 @@ Micro:bit (MicroPython)
 
 .. code-block:: Python
 
-   # Mesure de la resistance d'une CTN et calcul de la température
-
+   # Mesure de la resistance d'une CTN
    from microbit import *
  
    Ro = 10e3                   # Résistance série
@@ -223,11 +215,11 @@ Micro:bit (MicroPython)
       sleep(1000)              # Temporisation
 
 
-Caractéristique R=f(T)
-======================
+Caractéristique R=f(T) de la CTN
+================================
 
-Courbe
-------
+Courbe d’étalonnage
+-------------------
 
 Les mesures suivantes peuvent être effectuées avec le **microcontrôleur** ou à **l'ohmmètre**.
 
@@ -243,7 +235,7 @@ Les mesures suivantes peuvent être effectuées avec le **microcontrôleur** ou 
 
 .. note::
 
-   Pour 25°C la résistance mesurée prend la valeur particulière de 10 |kohm| !
+   Dans cet exemple, la résistance mesurée prend la valeur particulière de 10 |kohm| pour 25°C  !
 
 
 Relation de Steinhart-Hart
@@ -256,9 +248,9 @@ Sur une grande plage de variation, la relation entre la température (en K) et l
    \dfrac{1}{T} = A + B \times \ln(R) + C \times (\ln(R))^3
 
 A, B et C sont les coefficients de Steinhart-Hart. Ils sont donnés par le constructeur
-ou peuvent se déterminer expérimentalement à partir de trois points de mesure et du programme Python :download:`steinhart-hart.py <files/steinhart-hart.py>`.
+ou peuvent se déterminer expérimentalement à l'aide du programme Python :download:`steinhart-hart.py <files/steinhart-hart.py>` à partir de trois points de la courbe d'étalonnage.
 
-Résultats obtenus :
+Résultats obtenus à partir du programme Python :
 
 .. math::
 
@@ -295,8 +287,8 @@ Le calcul de la température (en K) s'effectue à l'aide de la relation suivante
 
 
 
-Application : affichage de la température
-=========================================
+Application : réaliser un thermomètre numérique
+===============================================
 
 Arduino (C/C++)
 ---------------
@@ -342,11 +334,10 @@ Arduino (Python/Nanpy)
 
    # Mesure de la resistance d'une CTN et calcul de la température
    # Calcul de la température à partir de la relation de Steinhart-Hart
-
    from nanpy import ArduinoApi           # Gestion de l'Arduino
    from nanpy import SerialManager        # Gestion port série
    from time import sleep                 # Importation de sleep(seconde)
-   from math import log
+   from math import log                   # Importation du logarithme népérien
 
    Vcc = 5.0      # Tension d'alimentation
    Ro = 10000     # Résistance du pont
@@ -376,24 +367,22 @@ PyBoard (MicroPython)
 
    # Mesure de la resistance d'une CTN et calcul de la température
    # Calcul de la température à partir de la relation de Steinhart-Hart
-
-   from pyb import Pin, ADC
+   from pyb import Pin, ADC, delay
    from math import log
-   from time import sleep_ms
 
    adc = ADC(Pin("A0"))        # Déclaration du CAN
 
    Ro = 10e3                   # Résistance série
-   A =  0.0010832035972923174  # Coeff. de Steinhart-Hart
-   B =  0.00021723460553451255 # ...
-   C =  3.276999926128753e-07  # ...
+   A = 0.0010832035972923174   # Coeff. de Steinhart-Hart
+   B = 0.00021723460553451255  # ...
+   C = 3.276999926128753e-07   # ...
 
    while True:
-      N = adc.read()                               # Mesure de la tension
-      R = Ro*N/(4095-N)                            # Calcul de R
-      T = 1/(A + B*log(R) + C*log(R)**3) - 273.15  # Relation de Steinhart-Hart
-      print("R =", R, "T =", T)                    # Affichage
-      sleep_ms(1000)                               # Temporisation
+      N = adc.read()                              # Mesure de la tension
+      R = Ro*N/(4095-N)                           # Calcul de R
+      T = 1/(A + B*log(R) + C*log(R)**3) - 273.15 # Relation de Steinhart-Hart
+      print("R =", R, "T =", T)                   # Affichage
+      delay(1000)                                 # Temporisation
 
 Micro:bit (MicroPython)
 -----------------------
@@ -402,7 +391,6 @@ Micro:bit (MicroPython)
 
    # Mesure de la resistance d'une CTN et calcul de la température
    # Calcul de la température à partir de la relation de Steinhart-Hart
-
    from microbit import *
    from math import log
 
