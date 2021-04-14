@@ -13,7 +13,7 @@ Pour son développement, il est conseillé d'utiliser l'éditeur `Mu <https://co
    :alt:  Editeur Mu
    :align: center
 
-Sinon l'éditeur `Thonny <https://thonny.org/>`_ est une bonne alternative à Mu.
+Sinon l'éditeur `Thonny <https://thonny.org/>`_ est la meilleure alternative à Mu.
 
 .. image:: images/thonny_editor.png
    :width: 710

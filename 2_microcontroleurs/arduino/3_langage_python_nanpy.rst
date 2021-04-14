@@ -40,27 +40,19 @@ Le fichier ``nanpy-firmware-master.zip`` est à télécharger sur le site https:
 
 Puis il faut procéder dans l'orde suivant :
 
-* extraire le répertoire ``nanpy-firmware-master`` de l'archive ``nanpy-firmware-master.zip`` à un emplacement quelconque ; 
+* extraire l'archive ``nanpy-firmware-master.zip`` dans le répertoire de travail Arduino ;
+* aller dans le répertoire ``nanpy-firmware-master`` 
 * copier le fichier ``sample_cfg.h`` dans le répertoire ``Nanpy`` ;
-* renommer ce nouveau fichier ``sample_cfg.h`` en ``cfg.f`` ;
-* déplacer le répertoire ``Nanpy`` dans le carnet de croquis du logiciel Arduino (répertoire ``sketchbook``).
+* pour finir, renommer le nouveau fichier ``sample_cfg.h`` en ``cfg.f``.
 
 
 Téléversement du croquis du firmware sur la carte Arduino
 ---------------------------------------------------------
 
-Ouvrir le carnet de croquis ``Nampy`` à partir du menu :
+Dans le logiciel Arduino, ouvrir le carnet de croquis ``Nanpy.ino`` dans le répertoire ``Nanpy``.
 
-*Fichier > Carnet de croquis > Nanpy*
 
-.. image:: images/nanpy_ouvrir_croquis.png
-   :width: 500
-   :height: 601
-   :scale: 70 %
-   :alt: 
-   :align: center
-
-Puis **téléverser** le programme dans la carte Arduino.
+Puis **téléverser** le programme sur la carte Arduino.
 
 .. image:: images/nanpy_televersement.png
    :width: 501
@@ -78,7 +70,7 @@ La carte est maintenant prête pour un fonctionnement avec Nanpy !
 
 
 Installation la librairie Nanpy sur l'ordinateur
-===============================================
+================================================
 
 L'installation dépend de la distribution Python utilisée sur l'ordinateur.
 
@@ -90,14 +82,26 @@ https://edupython.tuxfamily.org/
 
 Il n'y a rien à faire car la librairie Nanpy est installée par défaut.
 
+
 Pour les autres distributions
 -----------------------------
 
-Il faut installer manuellement à partir du dépôt internet ``Pypi`` (https://pypi.org/project/nanpy/) à l'aide de la commande ``pip`` :
+Il faut installer manuellement à partir du dépôt internet ``Pypi`` (https://pypi.org/project/nanpy/) avec la commande ``pip`` :
 
-.. code:: bash
+.. code-block:: bash
 
-   pip install nanpy
+   python -m pip install nanpy
+
+Ou bien à partir de l'archive Zip  ``nanpy-master.zip`` téléchargée sur le site Github de Nanpy (https://github.com/nanpy) :
+
+.. code-block:: bash
+
+   python -m pip install nanpy-master.zip
+
+.. warning::
+
+   L'archive Zip doit être enregistré dans le répertoire où la commande ``pip`` a été exécutée. 
+
 
 Exemple : le programme Blink
 ============================

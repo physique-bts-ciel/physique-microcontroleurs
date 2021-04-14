@@ -17,8 +17,8 @@ Qu'est-ce qu'Arduino ?
 
 A l'origine conçue pour la **création artistique**, la carte Arduino trouve des applications dans des domaines d'applications aussi variés qu'insolites. Une carte Arduino s'utilise généralement comme :
 
-   * **dispositif autonome** dans des applications comme la domotique, la robotique, les systèmes embarqués, ...
-   * **interface** entre un ordinateur (logiciel tiers) et des capteurs ou des actionneurs ;
+* **dispositif autonome** dans des applications comme la domotique, la robotique, les systèmes embarqués, ...
+* **interface** entre un ordinateur (logiciel tiers) et des capteurs ou des actionneurs ;
 
 **Arduino** est aussi le **logiciel de développement** des cartes du même nom. Également sous licence libre, cet environnement de développement intégré (IDE) utilise C/C++ comme langage de programmation et le port USB pour le téléversement du programme obtenu.
 
@@ -41,15 +41,15 @@ La carte Arduino UNO (Rev 3)
 
 Caractéristiques principales :
 
-   * microcontroleur 8 bits ATMEGA328P cadencé à 16 Mhz ;
-   * alimentation externe (7 à 12 V) ou USB (5 V);
-   * programmation et communication via port USB ;
-   * 14 broches d'entrées/sorties numériques dont 6 PWM ;
-   * 6 entrées analogiques sur 10 bits ;
-   * 1 port I2C (communication avec capteurs/actionneurs numériques) ;
-   * 1 port UART (communication série) ;
-   * 3 timers (comptage et mesure de temps) ;
-   * gestion des interruptions.
+* microcontrôleur 8 bits ATMEGA328P cadencé à 16 Mhz ;
+* alimentation externe (7 à 12 V) ou USB (5 V);
+* programmation et communication via port USB ;
+* 14 broches d'entrées/sorties numériques dont 6 PWM ;
+* 6 entrées analogiques sur 10 bits ;
+* 1 port I2C (communication avec capteurs/actionneurs numériques) ;
+* 1 port UART (communication série) ;
+* 3 timers (comptage et mesure de temps) ;
+* gestion des interruptions.
 
 .. image:: images/arduino-uno_rev3_pixabay.png
    :width: 480
@@ -68,7 +68,7 @@ Caractéristiques principales :
 Les cartes spécifiques pour les sciences physiques
 --------------------------------------------------
 
-Il s'agit de cartes spécialement concues pour les sciences physiques avec des **protections sur les ports d'entrée/sortie** contre les mauvaises manipulations (ce type de protections n'existe pas sur les cartes classiques comme l'Arduino Uno). Ces cartes disposent de leurs **propres capteurs** avec une connectique particulière.
+Il s'agit de cartes spécialement conçues pour les sciences physiques avec des **protections sur les ports d'entrée/sortie** contre les mauvaises manipulations (ce type de protections n'existe pas sur les cartes classiques comme l'Arduino Uno). Ces cartes disposent de leurs **propres capteurs** avec une connectique particulière.
 
 Educaduino Lab (Eurosmart)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,14 +86,14 @@ https://educaduino-lab.com/
 
 
 
-La carte **Educaduino Lab** a été concue sur la base d'une carte Arduino MEGA 2560. Cette dernière est équivalente à une carte arduino UNO mais avec plus de mémoire et surtout **plus de ports d'entrée/sortie**. Ce qui a permis à Eurosmart d'y placer des **connecteurs USB pour ses propres capteurs** tout en gardant la connectique classique de l'Arduino UNO.
+La carte **Educaduino Lab** a été conçue sur la base d'une carte Arduino MEGA 2560. Cette dernière est équivalente à une carte arduino UNO mais avec plus de mémoire et surtout **plus de ports d'entrée/sortie**. Ce qui a permis à Eurosmart d'y placer des **connecteurs USB pour ses propres capteurs** tout en gardant la connectique classique de l'Arduino UNO.
 
 Caractéristiques principales :
 
-   * microcontrôleur ATMEGA 2560 (comme l'Arduino MEGA 2560) ;
-   * protection des ports d'entrée/sortie ;
-   * brochage compatible Arduino Uno Rev 3 (pin 0.8mm, shield Grove, ...) ;
-   * ports supplémentaires en USB pour capteurs Educaduino-Lab ;
+* microcontrôleur ATMEGA 2560 (comme l'Arduino MEGA 2560) ;
+* protection des ports d'entrée/sortie ;
+* brochage compatible Arduino Uno Rev 3 (pin 0.8mm, shield Grove, ...) ;
+* ports supplémentaires en USB pour capteurs Educaduino-Lab ;
 
 .. figure:: images/educaduino_manip_temperature.png
    :width: 800
@@ -133,10 +133,10 @@ Sciencéthic propose également une carte **Plug'Uino Uno** protégée contre le
 
 Caractéristiques principales :
 
-   * microcontrôleur ATMEGA 328P (comme l'Arduino Uno) ;
-   * protection des ports d'entrée/sortie ;
-   * brochage compatible Arduino Uno Rev 3 (pin 0.8mm, shield Grove, ...) ;
-   * connecteurs SATA pour les capteurs Plug'uino ;
+* microcontrôleur ATMEGA 328P (comme l'Arduino Uno) ;
+* protection des ports d'entrée/sortie ;
+* brochage compatible Arduino Uno Rev 3 (pin 0.8mm, shield Grove, ...) ;
+* connecteurs SATA pour les capteurs Plug'uino ;
    
 .. figure:: images/sciencethic_pluguino_uno_pression.png
    :width: 481

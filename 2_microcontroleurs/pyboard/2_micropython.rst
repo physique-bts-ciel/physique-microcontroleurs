@@ -6,8 +6,9 @@ Pour de programmer la PyBoard en langage Python natif, un micrologiciel (firmwar
 
 Les logiciels `Thonny <https://thonny.org/>`_ et `uPyCraft <https://github.com/DFRobot/uPyCraft>`_ exploitent pleinement la programmation des microcontrôleurs en MicorPython. Ils permettent deux types de programmation :
 
-   * directement dans l'interpréteur MicroPython (REPL) pour tester des instructions par exemple ;
-   * ou dans un script (fichier avec l'extension ``.py``) qui peut-être sauvegarder sur la mémoire de la carte pour être exécuté de façon autonome sur la carte.
+* directement dans l'interpréteur MicroPython (REPL) pour tester des instructions par exemple ;
+
+* ou dans un script (fichier avec l'extension ``.py``) qui peut-être sauvegarder sur la mémoire de la carte pour être exécuté de façon autonome sur la carte.
 
 .. warning::
 

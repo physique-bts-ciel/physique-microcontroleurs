@@ -17,10 +17,10 @@ Principales caractéristiques de la carte :
 * 256 ko de mémoire flash (ROM) ;
 * 16 ko de mémoire vive (RAM) ;
 * Tension de fonctionnement à 3,3V ;
-* 1 port micro USB (programmation REPL + accés mémoire flash) ;
+* 1 port micro USB (programmation REPL + accès mémoire flash) ;
 * 25 ports E/S ;
 * 3 entrées analogique ;
-* 2 boutons, matrice 5x5 leds, 1  ;
+* 2 boutons, matrice 5x5 Leds, 1  ;
 * Bluetooth 4.0 LE
 * Magnétomètre 3D, accéléromètre 3D
 
