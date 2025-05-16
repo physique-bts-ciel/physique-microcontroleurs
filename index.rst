@@ -15,7 +15,9 @@ Cette document a pour objectif d'apporter aux professeurs de physique-chimie les
 
    1_introduction/introduction
    2_microcontroleurs/index
-   3_bases/index
-   4_lycee/index
-   5_aller_plus_loin/index
+   3_langage_arduino/index
+   4_langage_python/index
+   5_bases/index
+   6_lycee/index
+   7_aller_plus_loin/index
 

@@ -1,5 +1,5 @@
-Les microcontrôleurs
-====================
+Microcontrôleurs
+================
 
 
 .. only:: html
@@ -9,8 +9,8 @@ Les microcontrôleurs
 .. toctree::
    :maxdepth: 2
 
-   arduino/index
-   microbit/index
-   pyboard/index
+   1_arduino
+   2_pyboard
+   3_microbit
 
 

@@ -1,15 +1,15 @@
-=================================
-Introduction aux microcontrôleurs
-=================================
+============
+Introduction
+============
 
 Qu'est-ce qu'un microcontrôleur ?
 =================================
 
-Un microcontrôleur est un circuit intégré regroupant un micro-processeur, de la mémoire et des périphériques sur la même puce. Contrairement à un microprocesseur classique, un **microcontrôleur est surtout utilisé pour une application spécifique**.
+Un microcontrôleur est un circuit intégré regroupant un micro-processeur, de la mémoire et des périphériques sur la même puce. Contrairement à un microprocesseur classique, un **microcontrôleur est surtout utilisé pour une application électronique spécifique**.
 
 De nos jours, les microcontrôleurs sont présents un peu partout : dans les appareils domestiques, médicaux, de télécommunication, dans les voitures, les avions, l'industrie, ... 
 
-Apparus dans les années 70, les microcontrôleurs à architecture 8 bits ne sont pas près de disparaître. Très peu chère, on les retrouve dans des petites applications (ex. télécommande). Par exemple, la célèbre carte Arduino UNO fonctionne avec un microcontrôleur 8 bits !
+Apparus dans les années 70, les microcontrôleurs à architecture 8 bits ne sont pas près de disparaître. Très peu chère, on les retrouve dans des petites applications (ex. télécommande). La célèbre carte Arduino UNO fonctionne avec un microcontrôleur 8 bits !
 
 .. figure:: images/Arduino_Uno_rev3_wikipedia.jpg
    :width: 800
@@ -49,14 +49,6 @@ Actuellement, la tendance est aux microcontrôleurs 32 bits (ex. ARM Cortex-M, S
    
    Carte ESP-WROOM-32 (microcontrôleur ESP32)
 
-Les différents types de microcontrôleurs
-========================================
-
-Plusieurs critères permettent de différencier les microcontrôleurs : leur architecture, le nombre et le type de périphériques d'entrées/sorties, le langage de programmation, ...
-
-Ces deux derniers points sont à prendre en considération. En particulier, au lycée, le choix de Python comme langage de programmation des microcontrôleurs paraît logique.
-
-En pratique, la plupart des manuels de sciences physiques et des fabricants de matériel spécialisé se sont tournés vers les populaires cartes Arduino même si le langage de programmation utilisé n'est pas du Python mais du C/C++ ! Cependant, il existe des solutions de **pilotage** d'une carte Arduino en langage Python avec le librairies Nanpy ou encore PyFirmata.
 
 Pourquoi des microcontrôleurs en sciences physiques ?
 =====================================================
@@ -66,6 +58,8 @@ Le monde actuel est fortement imprégné par le numérique. Par exemple, les té
 Il est donc important d'expliquer comment s'effectue la **mesure d'une grandeur physique analogique** un appareil numérique.
 
 Il en est de même pour la **génération de signaux** (ex. son) à partir d'un appareil numérique.
+
+
 
 Les fonctions d'un microcontrôleur
 ==================================
@@ -79,8 +73,8 @@ Les microcontrôleurs permettent principalement de :
 * **mesurer des durées** (ex. période, fréquence, temps caractéristique, ...).
 
 
-Les microcontrôleurs en sciences physiques
-==========================================
+Applications en sciences physiques
+==================================
 
 De manière générale, les microcontrôleurs sont utilisés :
 

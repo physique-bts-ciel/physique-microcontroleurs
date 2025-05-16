@@ -20,11 +20,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Microcontroleurs & Sciences physiques'
-copyright = '2019, THERINCOURT David'
+copyright = '2025, THERINCOURT David'
 author = 'THERINCOURT David'
 
 # The short X.Y version
-version = '1.0'
+version = '1.1'
 # The full version, including alpha/beta/rc tags
 release = ''
 
