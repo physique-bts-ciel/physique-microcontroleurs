@@ -5,42 +5,117 @@ Mesurer une pression - Loi de la statique des fluides (première générale)
 
    Tester la loi fondamentale de la statique des fluides.
 
-Principe
---------
 
-La mesure de pression s'effectue avec un capteur de pression différentiel du type MPX2010 (10 kPa - 5V).
+.. Principe
+.. --------
 
-.. figure:: Images/pression_diff_mpx2010.png
-   :width: 850
-   :height: 412
+
+Capteur MPX2010
+---------------
+
+La mesure de pression s'effectue avec un capteur de pression différentiel du type MPX2010 (0 à 100 hPa) compensé en température.
+
+
+
+.. figure:: Images/MPX2010_schematic.png
+   :width: 907
+   :height: 535
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   Schéma électrique du MPX2010 (image : NXP Semiconductors)
+
+
+
+.. figure:: Images/MPX2010DP.png
+   :width: 640
+   :height: 364
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   (image : NXP Semiconductors)
+
+.. figure:: Images/MPX2010GP.png
+   :width: 640
+   :height: 377
+   :scale: 50 %
+   :alt:
+   :align: center
+
+   (image : NXP Semiconductors)
+
+La **version différentielle** mesure la différence de pression entre deux points d'entrée alors que la **version jauge** mesure la la différence de pression d'un point d'entrée par rapport à la pression atmosphérique.
+
+
+.. figure:: Images/MPX2010_datasheet_table9.png
+   :width: 944
+   :height: 574
    :scale: 70 %
    :alt:
    :align: center
 
-   Schéma électrique du capteur de pression MPX2021
+   Extrait datasheet (source : NXP Semiconductors)
 
-La tension de sortie est proportionnelle à la pression mesurée.
+
+Pour ce capteur, la tension de sortie est proportionnelle à la différence de pression mesurée telle que :
+
+.. math:: 
+
+   U_{out} = S \times \Delta P
+   \qquad\text{avec}\qquad
+   S = 2,5~{\rm mV/kPa}
+
+
+Module Educaduino Lab
+---------------------
+
+Le module Educaduino LAB est conçu autour sur le capteur MPX2010GP.
+
+.. figure:: Images/MPX2010GP_Educaduino_LAB.jpg
+   :width: 800
+   :height: 719
+   :scale: 33 %
+   :alt:
+   :align: center
+
+   Capteur de pression différentielle Educaduino LAB (jauge)
+
+Après adaptation (amplification), l'expression de la pression différentielle (en Pa) en fonction de la tension en sortie du capteur est :
+
+.. math:: 
+
+   \Delta P = 2000 \times U
+   \qquad
+   {\rm (Pa)}
+
+
 
 Montage
 -------
 
-Le montage est composé d'une carte Educaduino Lab et d'un capteur de pression différentiel Educaduino (0 à 10 kPa).
+.. figure:: Images/MPX2010_pression_statique_fluide.png
+   :width: 1279
+   :height: 768
+   :scale: 50 %
+   :alt:
+   :align: center
 
-L'expression de la pression (en Pa) en fonction de la tension délivrée par le capteur est :
-
-.. math::
-
-   P = 2000 \times U
+   Montage de la vérification de loi de la statique des fluides à partir d'un Arduino
+   
 
 
 Programme
 ---------
 
+Avec écran LCD Educaduino LAB. La lecture de la tension analogique se fait sur la broche A9.
+
 .. code-block:: arduino
 
    /*
     * Mesure d une pression relative
-    * Capteur Educaduino MPX2010 de 200 hPa à 4000 hPa
+    * Capteur Educaduino MPX2010GP 0 à 10 kPa
     * branché sur la broche A9
     */
 
@@ -74,5 +149,5 @@ Programme
      delay(1000);
    }
 
-A retenir
----------
+.. A retenir
+.. ---------
