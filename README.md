@@ -1,3 +1,6 @@
 # physique-microcontroleurs
+
+Documentation sur l'utilisation des microcontrôleur en physique-chimie.
+
 David THERINCOURT
-Novembre 2019
+2025
