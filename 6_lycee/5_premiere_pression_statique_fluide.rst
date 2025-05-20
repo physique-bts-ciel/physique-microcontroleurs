@@ -10,8 +10,8 @@ Mesurer une pression - Loi de la statique des fluides (première générale)
 .. --------
 
 
-Capteur MPX2010
----------------
+Capteur MPX2010DP/GP
+--------------------
 
 La mesure de pression s'effectue avec un capteur de pression différentiel du type MPX2010 (0 à 100 hPa) compensé en température.
 
@@ -46,7 +46,7 @@ La mesure de pression s'effectue avec un capteur de pression différentiel du ty
 
    (image : NXP Semiconductors)
 
-La **version différentielle** mesure la différence de pression entre deux points d'entrée alors que la **version jauge** mesure la la différence de pression d'un point d'entrée par rapport à la pression atmosphérique.
+La **version DP** mesure la différence de pression entre deux points d'entrée alors que la **version GP** mesure la différence de pression d'un point d'entrée par rapport à la pression atmosphérique.
 
 
 .. figure:: Images/MPX2010_datasheet_table9.png
@@ -68,8 +68,9 @@ Pour ce capteur, la tension de sortie est proportionnelle à la différence de p
    S = 2,5~{\rm mV/kPa}
 
 
-Module Educaduino Lab
----------------------
+
+Module Educaduino Lab (MPX2010GP)
+---------------------------------
 
 Le module Educaduino LAB est conçu autour sur le capteur MPX2010GP.
 

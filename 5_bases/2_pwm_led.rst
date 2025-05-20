@@ -32,7 +32,7 @@ La carte Arduino UNO dispose de 6 sorties PWM sur les broches 3, 5, 6, 9, 10, 11
    Soties PWM de l'Arduino Uno R3
 
 .. warning::
-   La fréquence d'un signal PWM est fixée à 490 Hz !
+   La fréquence d'un signal PWM est fixée à 490 Hz pour un arduino Uno R3 !
 
 Montage
 =======
@@ -47,6 +47,10 @@ Montage
    Branchement d'une LED sur la broche 11
 
 Une LED en série avec une résistance de 220 |ohm| est branchée sur la broche 11.
+
+
+
+
 
 Programme en langage Arduino (C/C++)
 ====================================
@@ -68,7 +72,38 @@ Programme en langage Arduino (C/C++)
      delay(1000);           // Attendre 1 s
    }
 
-* La fonction ``analogWrite(LED,duty)`` génère une modulation à largeur d'impulsion sur la broche 11 où ``duty`` est un nombre entier entre 0 et 255 respectivement pour un rapport cyclique entre 0% et 100%.
+La fonction ``analogWrite(LED,duty)`` génère une modulation à largeur d'impulsion sur la broche 11 où ``duty`` est un nombre entier entre 0 et 255 respectivement pour un rapport cyclique entre 0% et 100%.
+
+Le code qui suit est une version avec la saisie du rapport cyclique au clavier dans le moniteur série.
+
+.. code:: arduino
+
+   // PWM avec saisie du rapport cyclique (entier de 0 à 255) au clavier dans le moniteur série.
+   // ATTENTION : Sélectionner "Pas de fin de ligne" dans le monitor série !!!
+   // David THERINCOURT 2025
+
+   #define LED 11           // LED connectée à la broche 11
+
+   void setup()
+   {
+      Serial.begin(9600);   // Initialisation du port série
+      pinMode(LED,OUTPUT);  // Configuration de la broche LED en sortie
+   }
+
+   void loop()
+   {
+      Serial.print("Rapport cyclique entre 0 et 255 : ");  // Indication à l'utilisateur
+      while (Serial.available()==0){}                      // Attente d'un message (Cocher "Pas de fin de ligne")
+      int N = Serial.parseInt();                           // Extraction de la valeur numérique (entier)
+      Serial.println(N);                                   // Affichage de N
+      analogWrite(LED, N);                                 // Ecriture sur la sortie PWM
+   }
+
+
+
+
+
+
 
 
 Programme en langage Python (Nanpy)

@@ -11,8 +11,8 @@ Principe
 
 La manipulation consiste à vérifier la loi de Mariotte :math:`{P \times V = constante}` (à température et quantité de matière constantes).
 
-Capteur de pression absolu MPX5700AP
-====================================
+Capteur de pression absolue MPX5700AP
+=====================================
 
 Le MPX5700AP est un capteur analogique de pression absolue (15 kPa à 700 kPa - 5V).
 
@@ -38,7 +38,7 @@ Le MPX5700AP est un capteur analogique de pression absolue (15 kPa à 700 kPa - 
    
    Schéma électrique (source : Freescale Semiconductor, Inc.)
 
-.. figure:: Images/MPX5700_datasheet_table.png
+.. figure:: Images/MPX5700_datasheet_table_2.png
    :width: 1383
    :height: 640
    :scale: 50 %
@@ -52,9 +52,14 @@ La mesure de pression (en kPa) est donnée par la relation pour une alimentation
 
    .. math:: 
 
-      \boxed{P = \dfrac{P_{max}-P_{min}}{V_{max}-V_{min}} \times V_{out} + P_{min}}
-      = \dfrac{700-15}{4,7-0,2} \times V_{out} + 15
-      \approx 152\times V_{out} + 20
+      \boxed{P = \dfrac{P_{max}-P_{min}}{V_{max}-V_{min}} \times (v_{out}-V_{min}) + P_{min}}
+
+Soit :
+
+   .. math::
+      P = \dfrac{700-15}{4,7-0,2} \times (v_{out}-0,2) + 15
+      \quad\implies\quad
+      P \approx 152\times (v_{out}-0,2) + 15
 
 
 Capteur de pression absolu MPXHZ6400A (Educaduino LAB)
@@ -80,7 +85,7 @@ Le MPXHZ6400A est un capteur analogique de pression absolue (20 kPa à 400 kPa -
    
    Schéma électrique (source : Freescale Semiconductor, Inc.)
 
-.. figure:: Images/MPXHZ6400A_table.png
+.. figure:: Images/MPXHZ6400A_table_2.png
    :width: 1366
    :height: 773
    :scale: 50 %
@@ -93,16 +98,21 @@ Le MPXHZ6400A est un capteur analogique de pression absolue (20 kPa à 400 kPa -
 
    .. math:: 
 
-      \boxed{P = \dfrac{P_{max}-P_{min}}{V_{max}-V_{min}} \times V_{out} + P_{min}}
-      = \dfrac{400-20}{4,8-0,2} \times V_{out} + 20
-      \approx 83\times V_{out} + 20
+      \boxed{P = \dfrac{P_{max}-P_{min}}{V_{max}-V_{min}} \times (v_{out}-V_{min}) + P_{min}}
+
+Soit :
+
+   .. math::
+      P = \dfrac{400-20}{4,8-0,2} \times (v_{out}-0,2) + 20
+      \quad\implies\quad
+      P \approx 82,6\times (v_{out}-0,2) + 20
 
 
 
 Arduino (C/C++)
 ===============
 
-Le montage est composé d'une carte Educaduino Lab, d'un capteur de pression Educaduino (20 kPa à 400 kPa) et d'une seringue.
+Le montage est composé d'une carte Educaduino Lab, d'un capteur de pression Educaduino  (MPXHZ6400A / 20 kPa à 400 kPa) et d'une seringue.
 
 .. L'expression de la pression (en kPa) en fonction de la tension délivrée par le cateur est :
 
@@ -121,7 +131,7 @@ Le montage est composé d'une carte Educaduino Lab, d'un capteur de pression Edu
 
 .. note::
 
-   Dans cette manipulation, il est important de tenir compte du volume d'air :math:`{V_O}` présent dans le tube. La loi de Mariotte s'écrit alors 
+   Dans cette manipulation, il est important de tenir compte du volume d'air :math:`{V_0}` présent dans le tube. La loi de Mariotte s'écrit alors 
 
    .. math::
       P \times (V+V_0) = constante
@@ -152,7 +162,7 @@ Le montage est composé d'une carte Educaduino Lab, d'un capteur de pression Edu
 
    void loop() {
      tension = analogRead(brocheCapteur)*5.0/1023 ;   // Lecture de la tension
-     pression = tension * 83 + 20 ;                   // Calcul de la pression en kPa
+     pression = 82.6*(tension-0.2) + 20 ;               // Calcul de la pression en kPa
      lcd.clear();                                     // Début affichage
      lcd.setCursor(0,0);
      lcd.print("Pression en kPa");
