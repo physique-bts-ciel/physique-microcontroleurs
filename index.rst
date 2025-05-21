@@ -21,3 +21,6 @@ Cette document a pour objectif d'apporter aux professeurs de physique-chimie les
    6_lycee/index
    7_aller_plus_loin/index
 
+
+Télécharger la :download:`documentation en PDF <./physique-microcontroleurs.pdf>`.
+

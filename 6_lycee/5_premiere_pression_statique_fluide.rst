@@ -37,6 +37,8 @@ La mesure de pression s'effectue avec un capteur de pression différentiel du ty
 
    (image : NXP Semiconductors)
 
+La **version DP** (pression différentielle) mesure la différence de pression entre deux points d'entrée.
+
 .. figure:: Images/MPX2010GP.png
    :width: 640
    :height: 377
@@ -46,10 +48,10 @@ La mesure de pression s'effectue avec un capteur de pression différentiel du ty
 
    (image : NXP Semiconductors)
 
-La **version DP** mesure la différence de pression entre deux points d'entrée alors que la **version GP** mesure la différence de pression d'un point d'entrée par rapport à la pression atmosphérique.
+La **version GP** (pression relative - manomètre) mesure la pression d'un point d'entrée par rapport à une pression de référence (pression atmosphérique).
 
 
-.. figure:: Images/MPX2010_datasheet_table9.png
+.. figure:: Images/MPX2010_datasheet_table_2.png
    :width: 944
    :height: 574
    :scale: 70 %

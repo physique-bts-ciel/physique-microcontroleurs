@@ -53,7 +53,7 @@ Montage 1 : capteur connecté à la masse
    :alt:
    :align: center
 
-   Module personnel
+   Module personnel Grove (:math:`R=10\rm~k\Omega`)
 
 Montage 2 : capteur connecté à Vcc 
 ----------------------------------
@@ -74,7 +74,7 @@ Montage 2 : capteur connecté à Vcc
    :alt:
    :align: center
 
-   Module Plug'uino (Sciencéthic)
+   Module CTN Plug'uino (:math:`R=10\rm~k\Omega`)
 
 Montage : mesure de la tension et du courant (ex. capteurs Educaduino)
 ----------------------------------------------------------------------
@@ -93,7 +93,7 @@ Montage : mesure de la tension et du courant (ex. capteurs Educaduino)
    :alt:
    :align: center
 
-   Module Educaduino Lab (Eurosmart)
+   Module CTN Educaduino LAB (:math:`R=10\rm~k\Omega`)
 
 En plus de la **mesure de la tension** du capteur, une **mesure du courant** est aussi réalisée à partir de la tension aux bornes de la résistance R par l’intermédiaire d’un amplificateur différentiel. La résistance du capteur est alors calculée avec la **loi d’Ohm**. 
 
