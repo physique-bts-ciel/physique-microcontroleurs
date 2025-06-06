@@ -1,0 +1,14 @@
+# Deux plaques epoxy
+# Mesures délicates : dépend de la pression sur les plaques.
+d	C
+cm	nF
+5	0.510
+7	0.620
+9	0.759
+11	0.890
+13	0.996
+15	1.18
+17	1.33
+19	1.59
+21	1.69
+23	1.90

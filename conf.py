@@ -24,7 +24,7 @@ copyright = '2025, THERINCOURT David'
 author = 'THERINCOURT David'
 
 # The short X.Y version
-version = '1.1'
+version = '2.01'
 # The full version, including alpha/beta/rc tags
 release = ''
 
@@ -40,8 +40,8 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.todo',
+    'sphinx_copybutton',
 #    'sphinx.ext.mathml',
-#    'sphinx_copybutton',
 #    'sphinx.ext.mathjax',
 #    'sphinx.ext.imgmath',
 ]
@@ -139,6 +139,7 @@ latex_elements = {
     %% %% Table of content upto 2=subsection, 3=subsubsection
     \setcounter{tocdepth}{2}
     \usepackage{amsmath,amsfonts,amssymb,amsthm}
+    \usepackage{cancel}
     \usepackage[bitstream-charter]{mathdesign}
     \usepackage{graphicx}
     %% % r educe spaces for Table of contents, figures and tables
@@ -231,7 +232,7 @@ latex_elements = {
     \today
     %% \vfill adds at the bottom
     \vfill
-    \small \textit{Plus d'informations sur }{\href{https://physique-microcontroleurs.readthedocs.io/}{https://physique-microcontroleurs.readthedocs.io/}}
+    \small \textit{Plus d'informations sur }{\href{https://microcontroleurs.david-therincourt.fr/}{https://microcontroleurs.david-therincourt.fr/}}
     \end{titlepage}
     \clearpage
     \pagenumbering{roman}
@@ -260,7 +261,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'microcontroleurs.tex', 'Microcontroleurs et sciences physiques',
+    (master_doc, 'physique-microcontroleurs.tex', 'Microcontroleurs et sciences physiques',
      'THERINCOURT David', 'book'), # book ou manual
 ]
 

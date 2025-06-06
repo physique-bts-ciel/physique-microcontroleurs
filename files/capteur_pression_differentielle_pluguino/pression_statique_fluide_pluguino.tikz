@@ -1,0 +1,59 @@
+﻿%\usepackage{tikz}
+%\usepgflibrary{arrows}
+
+
+\begin{tikzpicture}[scale=1,>=triangle 45]%
+\shorthandoff{:} % Resolution bug entre domain=?:? et babel en francais
+
+	\clip (0,1) rectangle (15,10);
+
+	\begin{scope}[thick, xshift=3cm, yshift=5.9cm]
+		\draw[fill=C0](0,0) rectangle (2.6,2.2);
+		\draw[fill, xshift=1cm] (0,0.4)rectangle node[white, font=\tiny, align=center]{XGZP6857A\\005KPG}(1.5,1.8);
+		\draw[fill, xshift=2.5cm] (0,1) rectangle (0.5,1.2) node[above right]{$P_{B}$};
+		\node at (3,0.5) [below right]{$P_{A} = P_{atm}$};
+		\draw[ultra thick]
+			(0,0.2) node[right, font=\scriptsize]{GND} --++(-1,0)  node[left]{Masse};
+		\draw[ultra thick, red]
+			(0,0.8) node[right,font=\scriptsize,black]{VCC} --++(-1,0) node[left,black]{$5~\volt$};
+		\draw[ultra thick]
+			(0,1.4) node[right,font=\scriptsize]{NC} --++(-0.1.,0) node[left]{};
+		\draw[ultra thick,yellow]
+			(0,2.0) node[right,font=\scriptsize,black]{SIG} --++(-1,0) node[left,black]{$V_{out}$};
+		\node () at (2,-2) {$\Delta P = P_B - P_A = 1250\times(V_{out}-0,5)$};
+	\end{scope}
+
+	\begin{scope}[xshift=12cm, yshift=2cm]
+		\draw[thick, C0!50, fill=C0!20] (-1,0) rectangle (1,5.5);
+		\draw[line width=8pt,C7,xshift=-6cm, yshift=5cm]
+			(0,0) .. controls (2,0) .. (4,2)
+							.. controls (5,3) and (6,3) .. (6,2)
+							--++(0,-5.5);
+		\draw[thick] (-1,0) rectangle (1,6.5);
+		\draw[thick, fill] (-1.2,0) rectangle (1.2,-0.25);
+	\end{scope}
+
+	\begin{scope}[xshift=13cm, yshift=2cm]
+		\draw[thick,->] (0,0)--(0,7) node[right]{$z$};
+		\draw[thick]
+			(.1,0) node[right]{$0$} --++(-0.2,0);
+		\draw[thick,dashed]
+			(0,1.5) node[right]{$z_B$} -- node[below]{$P_B$}(-2.1,1.5)  ;
+		\draw[thick,dashed]
+			(0,5.5) node[right]{$z_A$} -- node[above]{$P_A = P_{atm}$}(-2.1,5.5);
+		\draw[ultra thick,->]
+			(1,1.5)--node[right]{$h$}(1,5.5);
+	\end{scope}
+
+	%\node (formule) at (4.5,2)[font=\large]{$\boxed{\Delta P = P_B - P_A = \rho \times g \times (z_A-z_B)}$};
+
+	
+
+	%%% CONNEXION
+	\begin{scope}[]
+		
+	\end{scope}
+
+
+
+\end{tikzpicture}

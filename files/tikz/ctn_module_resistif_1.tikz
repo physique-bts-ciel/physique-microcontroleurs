@@ -1,0 +1,36 @@
+﻿\ctikzset{resistor=european}
+\ctikzset { bipoles/thickness=1}
+
+\tikzset{meter/.style={draw,thick,circle,fill=white,minimum size =0.75cm,inner sep=0pt}}
+
+\def\tensionv[#1,#2,#3][#4,#5](#6)(#7){%
+	\draw[thick,#3]([shift={(#5,#4)}]#6)--node[#2]{#1}([shift={(#5,-#4)}]#7);}
+%	\tensionv[label,position,<-][retrait,decalage](coord)(coord)
+\def\tensionh[#1,#2,#3][#4,#5](#6)(#7){%
+	\draw[thick,#3]([shift={(#4,#5)}]#6)--node[#2]{#1}([shift={(-#4,#5)}]#7);}
+%	\tensionh[label,position,<-][retrait,decalage](coord)(coord)
+
+
+\begin{circuitikz}[scale=1]
+	\shorthandoff{:;!?}
+	%\draw[cyan,step=10mm,thin]               (0cm,0cm) grid (8cm,8cm);
+	\clip (-1.5,-0.9) rectangle (11,4.5);
+	\draw[thick]
+		(0,0) node[left,C7]{GND}  to [open, v^=$V_{CC}$, voltage shift=1,*-*] (0,4) node[left,C3]{VCC}
+			to [short] (2,4)
+			to [R,l=$R_1$,fill=C7] (2,2)
+			to [thR,l=$R_{CAPT}$,fill=C7] (2,0) node[eground]{} 
+			to  (0,0) 
+		(2,2) to [short, *-*] (4,2) node[right,C0]{A0}
+		(2,0) to [short, *-*] (4,0); %node[right,C7]{GND}
+		;
+
+	\tensionv[$V$,right,->][0.2,0](4,0)(4,2)
+
+	\node () at (8,1) {$\mybox{R_{CAPT}=R_1\times\dfrac{V}{V_{CC}-V}}$};
+	
+	%\draw (5,3) node[op amp]{DIFF};
+	
+	%\tensionv[$u_2$,right,->][0.2,0.5](2,2)(2,4)
+\end{circuitikz}
+

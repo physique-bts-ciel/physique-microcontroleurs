@@ -1,0 +1,13 @@
+# Capteur capacitif niveau eau 4 plaques epoxy
+# Vis en plastique blanc
+# Mesures capacimètre stable
+d	C
+cm	nF
+2	0.97
+4	1.49
+6	2.00
+8	2.61
+10	3.14
+12	3.73
+14	4.15
+

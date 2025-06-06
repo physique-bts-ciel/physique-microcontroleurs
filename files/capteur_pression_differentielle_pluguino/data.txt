@@ -1,0 +1,12 @@
+# Capteur pression différentielle Pluguino
+# 0 - 50 hPa -> 0,5 - 4,5 V
+# P = 1250*(u-Vmin)
+h	P
+cm	Pa
+0	-30
+5	440
+10	848
+15	1268
+20	1700
+25	2120
+30	2553
